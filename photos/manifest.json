@@ -1,39 +1,39 @@
 {
   "photos": {
-    "IKEA-Adjustable-Coffee-table": [
-      "photos/IKEA-Adjustable-Coffee-table/IMG_2441.jpg"
+    "ikea-adjustable-coffee-table": [
+      "photos/ikea-adjustable-coffee-table/IMG_2441.jpg"
     ],
-    "IKEA-BESTA-TV-Bench": [
-      "photos/IKEA-BESTA-TV-Bench/IMG_9152.jpg",
-      "photos/IKEA-BESTA-TV-Bench/IMG_9153.jpg",
-      "photos/IKEA-BESTA-TV-Bench/IMG_9154.jpg",
-      "photos/IKEA-BESTA-TV-Bench/IMG_9155.jpg"
+    "ikea-besta-tv-bench": [
+      "photos/ikea-besta-tv-bench/IMG_9152.jpg",
+      "photos/ikea-besta-tv-bench/IMG_9153.jpg",
+      "photos/ikea-besta-tv-bench/IMG_9154.jpg",
+      "photos/ikea-besta-tv-bench/IMG_9155.jpg"
     ],
-    "IKEA-FRIHETEN-Corner-Sofa-bed-with-Storage": [
-      "photos/IKEA-FRIHETEN-Corner-Sofa-bed-with-Storage/IMG_2443.jpg"
+    "ikea-friheten-corner-sofa-bed-with-storage": [
+      "photos/ikea-friheten-corner-sofa-bed-with-storage/IMG_2443.jpg"
     ],
-    "IKEA-INGATORP-INGOLF-Extendable-Table-and-4-Chairs": [
-      "photos/IKEA-INGATORP-INGOLF-Extendable-Table-and-4-Chairs/IMG_2442.jpg"
+    "ikea-ingatorp-ingolf-extendable-table-and-4-chairs": [
+      "photos/ikea-ingatorp-ingolf-extendable-table-and-4-chairs/IMG_2442.jpg"
     ]
   },
   "slugMap": {
-    "ikea-malm-office-desk": "IKEA-MALM-Office-Desk",
-    "ikea-ingatorp-ingolf-extendable-table-and-4-chairs": "IKEA-INGATORP-INGOLF-Extendable-Table-and-4-Chairs",
-    "ikea-adjustable-coffee-table": "IKEA-Adjustable-Coffee-table",
-    "ikea-malm-chest-of-2-drawers": "IKEA-MALM-Chest-of-2-Drawers",
-    "ikea-rosentorp-bar-stool-with-backrest": "IKEA-ROSENTORP-Bar-stool-with-backrest",
-    "ikea-friheten-corner-sofa-bed-with-storage": "IKEA-FRIHETEN-Corner-Sofa-bed-with-Storage",
-    "ikea-besta-tv-bench": "IKEA-BESTA-TV-Bench",
-    "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model": "TCL-65C755-4K-QD-Mini-LED-Google-Televison-65inch-2024-Model"
+    "ikea-friheten-corner-sofa-bed-with-storage": "ikea-friheten-corner-sofa-bed-with-storage",
+    "ikea-adjustable-coffee-table": "ikea-adjustable-coffee-table",
+    "ikea-malm-office-desk": "ikea-malm-office-desk",
+    "ikea-malm-chest-of-2-drawers": "ikea-malm-chest-of-2-drawers",
+    "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model": "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model",
+    "ikea-ingatorp-ingolf-extendable-table-and-4-chairs": "ikea-ingatorp-ingolf-extendable-table-and-4-chairs",
+    "ikea-besta-tv-bench": "ikea-besta-tv-bench",
+    "ikea-rosentorp-bar-stool-with-backrest": "ikea-rosentorp-bar-stool-with-backrest"
   },
   "titlesMap": {
-    "IKEA MALM Office Desk": "IKEA-MALM-Office-Desk",
-    "IKEA INGATORP / INGOLF Extendable Table and 4 Chairs": "IKEA-INGATORP-INGOLF-Extendable-Table-and-4-Chairs",
-    "IKEA Adjustable Coffee table": "IKEA-Adjustable-Coffee-table",
-    "IKEA MALM Chest of 2 Drawers": "IKEA-MALM-Chest-of-2-Drawers",
-    "IKEA ROSENTORP Bar stool with backrest": "IKEA-ROSENTORP-Bar-stool-with-backrest",
-    "IKEA FRIHETEN Corner Sofa-bed with Storage": "IKEA-FRIHETEN-Corner-Sofa-bed-with-Storage",
-    "IKEA BESTÅ TV Bench": "IKEA-BESTA-TV-Bench",
-    "TCL 65C755 4K QD-Mini LED Google Televison 65inch (2024 Model)": "TCL-65C755-4K-QD-Mini-LED-Google-Televison-65inch-2024-Model"
+    "IKEA FRIHETEN Corner Sofa-bed with Storage": "ikea-friheten-corner-sofa-bed-with-storage",
+    "IKEA Adjustable Coffee table": "ikea-adjustable-coffee-table",
+    "IKEA MALM Office Desk": "ikea-malm-office-desk",
+    "IKEA MALM Chest of 2 Drawers": "ikea-malm-chest-of-2-drawers",
+    "TCL 65C755 4K QD-Mini LED Google Televison 65inch (2024 Model)": "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model",
+    "IKEA INGATORP / INGOLF Extendable Table and 4 Chairs": "ikea-ingatorp-ingolf-extendable-table-and-4-chairs",
+    "IKEA BESTÅ TV Bench": "ikea-besta-tv-bench",
+    "IKEA ROSENTORP Bar stool with backrest": "ikea-rosentorp-bar-stool-with-backrest"
   }
 }

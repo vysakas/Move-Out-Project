@@ -26,7 +26,7 @@ def slugify(text):
 def folder_name(title):
     t = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore').decode()
     t = re.sub(r'[^\w\s-]', '', t).strip()
-    return re.sub(r'\s+', '-', t)
+    return re.sub(r'\s+', '-', t).lower()  # always lowercase to avoid case mismatches on Linux
 
 # ── 1. load existing titlesMap from manifest ──────────────────────────────────
 
@@ -90,6 +90,24 @@ if added and removed:
         print(f"   Old folders no longer in sheet (check if these should be renamed):")
         for t in removed_list:
             print(f"   photos/{old_titles_map[t]}/")
+
+# Get actual on-disk folder names (case-sensitive, regardless of macOS fs)
+actual_folders = set(os.listdir(PHOTOS_DIR))
+
+# Lowercase-migrate any existing folders whose on-disk name differs from expected lowercase
+for title, fname in list(new_titles_map.items()):
+    expected = folder_name(title)  # already lowercase
+    if fname in actual_folders and fname != expected:
+        old_path = os.path.join(PHOTOS_DIR, fname)
+        tmp_path  = os.path.join(PHOTOS_DIR, fname + '__tmp__')
+        new_path  = os.path.join(PHOTOS_DIR, expected)
+        # Two-step rename to avoid macOS case-insensitive collision
+        shutil.move(old_path, tmp_path)
+        shutil.move(tmp_path, new_path)
+        actual_folders.discard(fname)
+        actual_folders.add(expected)
+        print(f"   🔡 Lowercased: photos/{fname}/ → photos/{expected}/")
+        new_titles_map[title] = expected
 
 # Create folders for genuinely new titles
 for t in sorted(added):
