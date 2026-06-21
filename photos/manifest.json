@@ -1,0 +1,13 @@
+{
+  "photos": {
+    "IKEA-BESTA-TV-bench": [
+      "photos/IKEA-BESTA-TV-bench/IMG_9152.jpg",
+      "photos/IKEA-BESTA-TV-bench/IMG_9153.jpg",
+      "photos/IKEA-BESTA-TV-bench/IMG_9154.jpg",
+      "photos/IKEA-BESTA-TV-bench/IMG_9155.jpg"
+    ]
+  },
+  "slugMap": {
+    "ikea-besta-tv-bench": "IKEA-BESTA-TV-bench"
+  }
+}
