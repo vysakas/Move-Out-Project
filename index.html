@@ -407,6 +407,33 @@
     border-top: 1px solid var(--hairline);
     padding-top: 24px;
   }
+  /* SHIMMER SKELETON */
+  @keyframes shimmer {
+    from { background-position: -600px 0; }
+    to   { background-position:  600px 0; }
+  }
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 600px 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 6px;
+  }
+  .skeleton-card {
+    background: var(--canvas);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .skeleton-image { width: 100%; aspect-ratio: 4/3; }
+  .skeleton-body { padding: 16px 20px 20px; }
+  .skeleton-line { height: 12px; margin-bottom: 10px; border-radius: 6px; }
+  .skeleton-line.sm  { width: 40%; }
+  .skeleton-line.md  { width: 70%; }
+  .skeleton-line.lg  { width: 90%; }
+  .skeleton-footer { display: flex; justify-content: space-between; margin-top: 20px; }
+  .skeleton-price { height: 20px; width: 60px; border-radius: 6px; }
+  .skeleton-badge { height: 20px; width: 50px; border-radius: 9999px; }
+
   .footer-note {
     font-size: 13px;
     font-weight: 500;
@@ -556,7 +583,7 @@
     </p>
     <div class="meta-row">
       <div class="meta-pill">📍 Location: <span>Al Raha, Abu Dhabi</span></div>
-      <div class="meta-pill">📦 Items: <span id="item-count">6 listed</span></div>
+      <div class="meta-pill">📦 Items: <span id="item-count">0 listed</span></div>
       <div class="meta-pill">📅 Available until: <span>July 31, 2025</span></div>
     </div>
   </header>
@@ -919,8 +946,29 @@ const CATEGORY_EMOJI = {
 
   // Fetch sheet, parse, render — runs on every page load
   async function init() {
+    const filtersEl = document.getElementById('filters');
+    filtersEl.innerHTML = `
+      <div class="skeleton skeleton-pill" style="width:48px;height:36px;border-radius:9999px"></div>
+      <div class="skeleton skeleton-pill" style="width:80px;height:36px;border-radius:9999px"></div>
+      <div class="skeleton skeleton-pill" style="width:90px;height:36px;border-radius:9999px"></div>
+      <div class="filter-spacer"></div>
+      <div class="skeleton" style="width:200px;height:36px;border-radius:9999px"></div>`;
+
     const grid = document.getElementById('items-grid');
-    grid.innerHTML = `<p style="color:var(--muted);font-family:'DM Mono',monospace;font-size:13px;grid-column:1/-1;padding:40px 0">Loading items…</p>`;
+    const skeletonCard = `
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-image"></div>
+        <div class="skeleton-body">
+          <div class="skeleton skeleton-line sm"></div>
+          <div class="skeleton skeleton-line lg"></div>
+          <div class="skeleton skeleton-line md"></div>
+          <div class="skeleton-footer">
+            <div class="skeleton skeleton-price"></div>
+            <div class="skeleton skeleton-badge"></div>
+          </div>
+        </div>
+      </div>`;
+    grid.innerHTML = Array(6).fill(skeletonCard).join('');
 
     try {
       // Load manifest and sheet CSV in parallel
