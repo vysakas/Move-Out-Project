@@ -230,6 +230,9 @@
     transition: opacity 0.2s;
   }
   .carousel:hover .carousel-btn { opacity: 1; }
+  @media (hover: none) {
+    .carousel-btn { opacity: 0.75; }
+  }
   .carousel-btn.prev { left: 8px; }
   .carousel-btn.next { right: 8px; }
   .carousel-dots {
@@ -657,7 +660,7 @@
   }
 
   function slideCarousel(carId, dir, e) {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     const car   = document.getElementById(carId);
     const track = car.querySelector('.carousel-track');
     const dots  = car.querySelectorAll('.carousel-dot');
@@ -668,6 +671,27 @@
     car.dataset.index = cur;
     track.style.transform = `translateX(-${cur * 100}%)`;
     dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+
+  function initCarouselTouch(car) {
+    let startX = 0, startY = 0, dragging = false;
+    car.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      dragging = true;
+    }, { passive: true });
+    car.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      if (Math.abs(dx) > Math.abs(dy)) e.preventDefault();
+    }, { passive: false });
+    car.addEventListener('touchend', e => {
+      if (!dragging) return;
+      dragging = false;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) slideCarousel(car.id, dx < 0 ? 1 : -1, null);
+    }, { passive: true });
   }
 
   // Parse CSV text → array of objects using header row
@@ -780,6 +804,7 @@
           <button class="carousel-btn next" onclick="slideCarousel('car-modal', 1,event)">&#8250;</button>
           <div class="carousel-dots">${dots}</div>
         </div>`;
+      initCarouselTouch(document.getElementById('car-modal'));
     }
     document.getElementById('m-title').textContent     = item.Title;
     document.getElementById('m-desc').textContent      = item.Description || '';
@@ -853,6 +878,7 @@
 
       buildFilters(items);
       renderItems();
+      document.querySelectorAll('.carousel').forEach(initCarouselTouch);
 
       // Update footer timestamp
       const now = new Date();
