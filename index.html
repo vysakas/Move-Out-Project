@@ -81,7 +81,6 @@
     font-size: 16px;
     color: var(--body);
     font-weight: 400;
-    max-width: 480px;
     line-height: 1.55;
     margin-top: 12px;
   }
@@ -108,6 +107,34 @@
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 32px;
+    align-items: center;
+  }
+  .filter-spacer { flex: 1; }
+  .search-input {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--surface-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill);
+    padding: 8px 16px 8px 36px;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.15s, width 0.2s;
+  }
+  .search-input::placeholder { color: var(--muted-soft); }
+  .search-input:focus { border-color: var(--primary); width: 240px; }
+  .search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 12px;
+    color: var(--muted);
+    pointer-events: none;
   }
   .filter-btn {
     font-size: 14px;
@@ -121,7 +148,7 @@
     transition: all 0.15s;
   }
   .filter-btn:hover { background: var(--surface-card); color: var(--ink); }
-  .filter-btn.active { background: var(--surface-card); color: var(--ink); font-weight: 600; }
+  .filter-btn.active { background: rgba(255,56,92,0.1); color: var(--primary); font-weight: 600; }
 
   /* GRID */
   .items-grid {
@@ -521,14 +548,14 @@
 
   <!-- HEADER -->
   <header>
-    <div class="eyebrow">Moving Sale &mdash; Abu Dhabi, UAE</div>
-    <h1>Good things,<br><em>new homes.</em></h1>
+    <div class="eyebrow">Moving Sale &mdash; Al Raha, Abu Dhabi</div>
+    <h1>Good things, <em>new homes.</em></h1>
 
     <p class="subtitle">
-      Relocating soon and letting go of well-loved items. Everything is priced to move fast. Pick-up preferred in Abu Dhabi.
+      Relocating soon and letting go of well-loved pieces. Everything is priced to move fast. Collection from Al Raha, Abu Dhabi only.
     </p>
     <div class="meta-row">
-      <div class="meta-pill">📍 Location: <span>Abu Dhabi</span></div>
+      <div class="meta-pill">📍 Location: <span>Al Raha, Abu Dhabi</span></div>
       <div class="meta-pill">📦 Items: <span id="item-count">6 listed</span></div>
       <div class="meta-pill">📅 Available until: <span>July 31, 2025</span></div>
     </div>
@@ -742,18 +769,33 @@ const CATEGORY_EMOJI = {
   function buildFilters(data) {
     const cats = ['all', ...new Set(data.map(i => i.Category.toLowerCase()).filter(Boolean))];
     const wrap = document.getElementById('filters');
-    wrap.innerHTML = cats.map(c => `
+    const buttons = cats.map(c => `
       <button class="filter-btn ${c === 'all' ? 'active' : ''}"
               onclick="filterItems('${c}', this)">
         ${c === 'all' ? 'All' : c.charAt(0).toUpperCase() + c.slice(1)}
       </button>`).join('');
+    wrap.innerHTML = buttons + `
+      <div class="filter-spacer"></div>
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="search-input" id="search-input" type="search" placeholder="Search items…" oninput="searchItems(this.value)">
+      </div>`;
+  }
+
+  let searchQuery = '';
+  function searchItems(q) {
+    searchQuery = q.toLowerCase();
+    renderItems();
   }
 
   function renderItems() {
     const grid = document.getElementById('items-grid');
-    const filtered = activeFilter === 'all'
+    const base = activeFilter === 'all'
       ? items
       : items.filter(i => i.Category.toLowerCase() === activeFilter);
+    const filtered = searchQuery
+      ? base.filter(i => (i.Title + ' ' + (i.Description || '') + ' ' + (i.Category || '')).toLowerCase().includes(searchQuery))
+      : base;
 
     const available = items.filter(i => i.Sold?.toLowerCase() !== 'yes').length;
     document.getElementById('item-count').textContent = available + ' listed';
@@ -836,7 +878,7 @@ const CATEGORY_EMOJI = {
     document.getElementById('m-desc').textContent      = item.Description || '';
     document.getElementById('m-condition').textContent       = item.Condition || '—';
     document.getElementById('m-age').textContent             = item.Age || '—';
-    const origPrice = parseFloat((item['Original Price'] || '').replace(/[^0-9.]/g, '')) || 0;
+    const origPrice = parseFloat((item['Orginal price'] || item['Original Price'] || '').replace(/[^0-9.]/g, '')) || 0;
     document.getElementById('m-original-price').textContent  = origPrice ? `AED ${origPrice.toLocaleString()}` : '—';
     document.getElementById('m-price').innerHTML             =
       `<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:400;color:var(--muted)">AED</span><span>${price ? price.toLocaleString() : '—'}</span>`;
