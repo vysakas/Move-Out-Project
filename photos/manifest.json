@@ -1,13 +1,39 @@
 {
   "photos": {
+    "IKEA-Adjustable-Coffee-table": [
+      "photos/IKEA-Adjustable-Coffee-table/IMG_2441.jpg"
+    ],
     "IKEA-BESTA-TV-bench": [
       "photos/IKEA-BESTA-TV-bench/IMG_9152.jpg",
       "photos/IKEA-BESTA-TV-bench/IMG_9153.jpg",
       "photos/IKEA-BESTA-TV-bench/IMG_9154.jpg",
       "photos/IKEA-BESTA-TV-bench/IMG_9155.jpg"
+    ],
+    "IKEA-FRIHETEN-Corner-Sofa-bed-with-Storage": [
+      "photos/IKEA-FRIHETEN-Corner-Sofa-bed-with-Storage/IMG_2443.jpg"
+    ],
+    "IKEA-INGATORP-INGOLF-Extendable-Table-and-4-Chairs": [
+      "photos/IKEA-INGATORP-INGOLF-Extendable-Table-and-4-Chairs/IMG_2442.jpg"
     ]
   },
   "slugMap": {
-    "ikea-besta-tv-bench": "IKEA-BESTA-TV-bench"
+    "ikea-friheten-corner-sofa-bed-with-storage": "IKEA-FRIHETEN-Corner-Sofa-bed-with-Storage",
+    "ikea-adjustable-coffee-table": "IKEA-Adjustable-Coffee-table",
+    "ikea-malm-office-desk": "IKEA-MALM-Office-Desk",
+    "ikea-ingatorp-ingolf-extendable-table-and-4-chairs": "IKEA-INGATORP-INGOLF-Extendable-Table-and-4-Chairs",
+    "ikea-besta-tv-bench": "IKEA-BESTA-TV-Bench",
+    "ikea-rosentorp-bar-stool-with-backrest": "IKEA-ROSENTORP-Bar-stool-with-backrest",
+    "ikea-malm-chest-of-2-drawers": "IKEA-MALM-Chest-of-2-Drawers",
+    "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model": "TCL-65C755-4K-QD-Mini-LED-Google-Televison-65inch-2024-Model"
+  },
+  "titlesMap": {
+    "IKEA FRIHETEN Corner Sofa-bed with Storage": "IKEA-FRIHETEN-Corner-Sofa-bed-with-Storage",
+    "IKEA Adjustable Coffee table": "IKEA-Adjustable-Coffee-table",
+    "IKEA MALM Office Desk": "IKEA-MALM-Office-Desk",
+    "IKEA INGATORP / INGOLF Extendable Table and 4 Chairs": "IKEA-INGATORP-INGOLF-Extendable-Table-and-4-Chairs",
+    "IKEA BESTÅ TV Bench": "IKEA-BESTA-TV-Bench",
+    "IKEA ROSENTORP Bar stool with backrest": "IKEA-ROSENTORP-Bar-stool-with-backrest",
+    "IKEA MALM Chest of 2 Drawers": "IKEA-MALM-Chest-of-2-Drawers",
+    "TCL 65C755 4K QD-Mini LED Google Televison 65inch (2024 Model)": "TCL-65C755-4K-QD-Mini-LED-Google-Televison-65inch-2024-Model"
   }
 }
