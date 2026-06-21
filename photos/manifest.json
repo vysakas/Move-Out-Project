@@ -18,22 +18,34 @@
   },
   "slugMap": {
     "ikea-friheten-corner-sofa-bed-with-storage": "ikea-friheten-corner-sofa-bed-with-storage",
-    "ikea-adjustable-coffee-table": "ikea-adjustable-coffee-table",
     "ikea-malm-office-desk": "ikea-malm-office-desk",
-    "ikea-malm-chest-of-2-drawers": "ikea-malm-chest-of-2-drawers",
     "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model": "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model",
+    "ikea-rosentorp-bar-stool-with-backrest": "ikea-rosentorp-bar-stool-with-backrest",
     "ikea-ingatorp-ingolf-extendable-table-and-4-chairs": "ikea-ingatorp-ingolf-extendable-table-and-4-chairs",
+    "ikea-malm-chest-of-2-drawers": "ikea-malm-chest-of-2-drawers",
+    "ikea-adjustable-coffee-table": "ikea-adjustable-coffee-table",
     "ikea-besta-tv-bench": "ikea-besta-tv-bench",
-    "ikea-rosentorp-bar-stool-with-backrest": "ikea-rosentorp-bar-stool-with-backrest"
+    "ikea-bissa-shoe-cabinet-with-2-compartments": "ikea-bissa-shoe-cabinet-with-2-compartments",
+    "ikea-bissa-shoe-cabinet-with-3-compartments": "ikea-bissa-shoe-cabinet-with-3-compartments",
+    "ikea-brusali-bedside-table": "ikea-brusali-bedside-table",
+    "ikea-billy-bookshelf": "ikea-billy-bookshelf",
+    "ikea-curtains": "ikea-curtains",
+    "lg-27-inch-4k-uhd-led-monitor": "lg-27-inch-4k-uhd-led-monitor"
   },
   "titlesMap": {
     "IKEA FRIHETEN Corner Sofa-bed with Storage": "ikea-friheten-corner-sofa-bed-with-storage",
-    "IKEA Adjustable Coffee table": "ikea-adjustable-coffee-table",
     "IKEA MALM Office Desk": "ikea-malm-office-desk",
-    "IKEA MALM Chest of 2 Drawers": "ikea-malm-chest-of-2-drawers",
     "TCL 65C755 4K QD-Mini LED Google Televison 65inch (2024 Model)": "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model",
+    "IKEA ROSENTORP Bar stool with backrest": "ikea-rosentorp-bar-stool-with-backrest",
     "IKEA INGATORP / INGOLF Extendable Table and 4 Chairs": "ikea-ingatorp-ingolf-extendable-table-and-4-chairs",
+    "IKEA MALM Chest of 2 Drawers": "ikea-malm-chest-of-2-drawers",
+    "IKEA Adjustable Coffee table": "ikea-adjustable-coffee-table",
     "IKEA BESTÅ TV Bench": "ikea-besta-tv-bench",
-    "IKEA ROSENTORP Bar stool with backrest": "ikea-rosentorp-bar-stool-with-backrest"
+    "IKEA BISSA Shoe cabinet with 2 compartments": "ikea-bissa-shoe-cabinet-with-2-compartments",
+    "IKEA BISSA Shoe cabinet with 3 compartments": "ikea-bissa-shoe-cabinet-with-3-compartments",
+    "IKEA BRUSALI Bedside table": "ikea-brusali-bedside-table",
+    "IKEA Billy BookShelf": "ikea-billy-bookshelf",
+    "IKEA Curtains": "ikea-curtains",
+    "LG 27 inch 4K UHD LED Monitor": "lg-27-inch-4k-uhd-led-monitor"
   }
 }
