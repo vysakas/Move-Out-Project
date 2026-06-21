@@ -26,7 +26,7 @@ def slugify(text):
 def folder_name(title):
     t = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore').decode()
     t = re.sub(r'[^\w\s-]', '', t).strip()
-    return re.sub(r'\s+', '-', t).lower()  # always lowercase to avoid case mismatches on Linux
+    return re.sub(r'\s+', '-', t).lower()
 
 # ── 1. load existing titlesMap from manifest ──────────────────────────────────
 
