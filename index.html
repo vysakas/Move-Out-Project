@@ -37,9 +37,9 @@
   }
 
   .wrapper {
-    max-width: 860px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 60px 24px 80px;
+    padding: 60px 32px 80px;
     position: relative;
     z-index: 1;
   }
@@ -141,9 +141,12 @@
   /* GRID */
   .items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+  @media (min-width: 768px)  { .items-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1100px) { .items-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1400px) { .items-grid { grid-template-columns: repeat(5, 1fr); } }
 
   /* ITEM CARD */
   .item-card {
@@ -601,6 +604,22 @@
 
   const condClass = { Excellent: 'cond-excellent', Good: 'cond-good', Fair: 'cond-fair' };
 
+  // Words that should stay uppercase regardless of position
+  const UPPERCASE_WORDS = new Set(['ikea','tcl','tv','led','4k','qd','uhd','hd','usb','ac','dc','xl','xxl','uk','uae','eu','usa']);
+  // Small words to keep lowercase unless they start the title
+  const LOWERCASE_WORDS = new Set(['a','an','the','and','but','or','for','nor','on','at','to','by','in','of','up','as','is','with']);
+
+  function toDisplayTitle(str) {
+    return str.trim().split(/\s+/).map((word, i) => {
+      const clean = word.replace(/[^\wÀ-ɏ]/g, ''); // strip punctuation for lookup
+      const lower = clean.toLowerCase();
+      if (UPPERCASE_WORDS.has(lower)) return word.toUpperCase();
+      if (i > 0 && LOWERCASE_WORDS.has(lower)) return word.toLowerCase();
+      // Capitalise first letter, lowercase the rest (preserves accented chars like Å)
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }).join(' ');
+  }
+
   // Convert Google Drive share links to direct image URLs
   function resolvePhotoUrl(url) {
     if (!url) return '';
@@ -753,7 +772,7 @@
         ${carousel || `<div class="card-image-placeholder">${emoji}</div>`}
         <div class="card-body">
           <div class="card-category">${item.Category || ''}</div>
-          <div class="card-title">${item.Title}</div>
+          <div class="card-title">${toDisplayTitle(item.Title)}</div>
           <div class="card-desc">${item.Description || ''}</div>
           <div class="card-footer">
             <div class="price"><sub>AED</sub>${price ? price.toLocaleString() : '—'}</div>
@@ -806,14 +825,14 @@
         </div>`;
       initCarouselTouch(document.getElementById('car-modal'));
     }
-    document.getElementById('m-title').textContent     = item.Title;
+    document.getElementById('m-title').textContent     = toDisplayTitle(item.Title);
     document.getElementById('m-desc').textContent      = item.Description || '';
     document.getElementById('m-condition').textContent = item.Condition || '—';
     document.getElementById('m-age').textContent       = item.Age || '—';
     document.getElementById('m-pickup').textContent    = 'Abu Dhabi';
     document.getElementById('m-price').innerHTML       =
       `<sub style="font-family:'DM Mono',monospace;font-size:13px;font-weight:400;color:var(--muted)">AED</sub> ${price ? price.toLocaleString() : '—'}`;
-    const msg = encodeURIComponent(`Hi! I saw your moving sale and I'm interested in the "${item.Title}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?`);
+    const msg = encodeURIComponent(`Hi! I saw your moving sale and I'm interested in the "${toDisplayTitle(item.Title)}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?`);
     document.getElementById('m-wa').href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
     document.getElementById('modal-backdrop').classList.add('open');
   }
