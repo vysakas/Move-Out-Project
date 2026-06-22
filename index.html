@@ -186,9 +186,6 @@
     display: flex;
     flex-direction: column;
   }
-  .item-card:hover {
-    box-shadow: 0 4px 24px rgba(10,10,10,0.08);
-  }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(12px); }
@@ -351,7 +348,17 @@
   .cond-good      { background: var(--surface-card); color: var(--body); }
   .cond-fair      { background: #fee2e2; color: #991b1b; }
 
-  .sold-overlay { position: relative; }
+  .item-card:hover {
+    box-shadow: 0 4px 24px rgba(10,10,10,0.08);
+  }
+
+  .sold-overlay {
+    position: relative;
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.45;
+    filter: grayscale(0.4);
+  }
   .sold-overlay::after {
     content: 'SOLD';
     position: absolute;
@@ -364,8 +371,6 @@
     padding: 4px 10px;
     border-radius: var(--r-pill);
   }
-  .sold-overlay .card-image-placeholder,
-  .sold-overlay .card-body { opacity: 0.4; }
 
   /* CONTACT STRIP */
   .contact-strip {
@@ -834,9 +839,13 @@ const CATEGORY_EMOJI = {
     const base = activeFilter === 'all'
       ? items
       : items.filter(i => i.Category.toLowerCase() === activeFilter);
-    const filtered = searchQuery
+    const filtered = (searchQuery
       ? base.filter(i => (i.Title + ' ' + (i.Description || '') + ' ' + (i.Category || '')).toLowerCase().includes(searchQuery))
-      : base;
+      : base).sort((a, b) => {
+        const aSold = a.Sold?.toLowerCase() === 'yes' ? 1 : 0;
+        const bSold = b.Sold?.toLowerCase() === 'yes' ? 1 : 0;
+        return aSold - bSold;
+      });
 
     const available = items.filter(i => i.Sold?.toLowerCase() !== 'yes').length;
     document.getElementById('item-count').textContent = available + ' listed';
