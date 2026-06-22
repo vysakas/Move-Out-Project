@@ -809,7 +809,7 @@ const CATEGORY_EMOJI = {
       const obj = {};
       headers.forEach((h, i) => { obj[h] = (cols[i] || '').replace(/^"|"$/g, '').trim(); });
       return { ...obj, id: idx };
-    }).filter(r => r.Title && (r.Price || r.Description)); // skip blank rows and section headers
+    }).filter(r => r.Title && r.Category); // skip blank rows and section headers (no category = planning row)
   }
 
   function buildFilters(data) {
