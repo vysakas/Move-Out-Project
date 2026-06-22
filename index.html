@@ -283,14 +283,26 @@
     flex: 1;
   }
 
-  .card-category {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
+  .card-image-wrap {
+    position: relative;
   }
+  .card-category {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 10px 4px 8px;
+    border-radius: 9999px;
+    z-index: 2;
+    backdrop-filter: blur(4px);
+  }
+  .card-category svg { flex-shrink: 0; }
 
   .card-title {
     font-size: 15px;
@@ -670,6 +682,29 @@
   const WA_NUMBER  = '917896365690';
   // ────────────────────────────────────────────────────────
 
+const CATEGORY_CONFIG = {
+  furniture:  {
+    color: '#1a6b4a', bg: '#e6f4ee',
+    icon: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M3 10V8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2M3 10a2 2 0 0 0-2 2v4h22v-4a2 2 0 0 0-2-2M3 10h18M1 16v3m22-3v3M7 10V6m10 4V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`
+  },
+  electronic: {
+    color: '#1a3a8f', bg: '#e6ecfb',
+    icon: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`
+  },
+  kitchen: {
+    color: '#7a3a00', bg: '#fdefd8',
+    icon: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 2v7m0 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0 9v5M18 2v20M14 2c0 4 4 5 4 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`
+  },
+  decor: {
+    color: '#5a1a8f', bg: '#f0e6fb',
+    icon: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2a5 5 0 0 1 5 5c0 5-5 9-5 9S7 12 7 7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 22v-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`
+  },
+};
+const CATEGORY_DEFAULT = {
+  color: '#555', bg: '#f0f0f0',
+  icon: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>`
+};
+
 const CATEGORY_EMOJI = {
     furniture:   '🛋️',
     electronics: '📺',
@@ -858,6 +893,7 @@ const CATEGORY_EMOJI = {
     grid.innerHTML = filtered.map((item, idx) => {
       const sold      = item.Sold?.toLowerCase() === 'yes';
       const cat       = (item.Category || '').toLowerCase();
+      const catCfg    = CATEGORY_CONFIG[cat] || CATEGORY_DEFAULT;
       const emoji     = CATEGORY_EMOJI[cat] || '📦';
       const condition = item.Condition || '';
       const price     = parseFloat(item.Price.replace(/[^0-9.]/g, '')) || 0;
@@ -866,9 +902,11 @@ const CATEGORY_EMOJI = {
       <div class="item-card ${sold ? 'sold-overlay' : ''}"
            style="animation-delay:${idx * 0.05}s"
            onclick="${sold ? '' : `openModal(${item.id})`}">
-        ${carousel || `<div class="card-image-placeholder">${emoji}</div>`}
+        <div class="card-image-wrap">
+          ${carousel || `<div class="card-image-placeholder">${emoji}</div>`}
+          <div class="card-category" style="background:${catCfg.bg};color:${catCfg.color}">${catCfg.icon}${item.Category || ''}</div>
+        </div>
         <div class="card-body">
-          <div class="card-category">${item.Category || ''}</div>
           <div class="card-title">${toDisplayTitle(item.Title)}</div>
           <div class="card-desc">${item.Description || ''}</div>
           <div class="card-footer">
