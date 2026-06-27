@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Moving Sale — Everything Must Go</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏷️</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   /* ── Clay Design System Tokens ── */
@@ -148,6 +149,61 @@
     left: 12px;
     color: var(--muted);
     pointer-events: none;
+  }
+  .price-filter-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill);
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .price-filter-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .price-filter-value {
+    font-size: 12px;
+    color: var(--ink);
+    font-weight: 600;
+    min-width: 56px;
+  }
+  #price-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 90px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--hairline);
+    outline: none;
+    cursor: pointer;
+  }
+  #price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px var(--primary);
+  }
+  #price-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px var(--primary);
+  }
+  @media (max-width: 540px) {
+    .price-filter-wrap { width: 100%; box-sizing: border-box; order: 98; }
+    #price-slider { flex: 1; width: auto; }
   }
   .filter-btn {
     font-size: 14px;
@@ -672,7 +728,7 @@
       <div class="modal-category" id="m-category"></div>
       <div class="modal-title" id="m-title"></div>
       <div class="modal-desc" id="m-desc"></div>
-      <a id="m-link" href="#" target="_blank" rel="noopener" style="display:none;font-size:13px;color:var(--primary);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px">
+      <a id="m-link" href="#" target="_blank" rel="noopener" style="display:none;font-size:13px;color:var(--primary);text-decoration:none;margin-top:4px;margin-bottom:12px;align-items:center;gap:4px">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         View original listing
       </a>
@@ -888,8 +944,16 @@ const CATEGORY_EMOJI = {
               onclick="filterItems('${c}', this)">
         ${c === 'all' ? 'All' : c.charAt(0).toUpperCase() + c.slice(1)}
       </button>`).join('');
+    const maxPrice = Math.max(...items.map(i => parseFloat((i.Price || '').replace(/[^0-9.]/g, '')) || 0));
+    priceMax = maxPrice;
+    priceLimit = maxPrice;
     wrap.innerHTML = buttons + `
       <div class="filter-spacer"></div>
+      <div class="price-filter-wrap">
+        <span class="price-filter-label">Max</span>
+        <input id="price-slider" type="range" min="0" max="${maxPrice}" value="${maxPrice}" step="50" oninput="updatePriceFilter(this.value)">
+        <span class="price-filter-value" id="price-filter-val">AED ${maxPrice.toLocaleString()}</span>
+      </div>
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input class="search-input" id="search-input" type="search" placeholder="Search items…" oninput="searchItems(this.value)">
@@ -897,8 +961,17 @@ const CATEGORY_EMOJI = {
   }
 
   let searchQuery = '';
+  let priceMax = Infinity, priceLimit = Infinity;
+
   function searchItems(q) {
     searchQuery = q.toLowerCase();
+    renderItems();
+  }
+
+  function updatePriceFilter(val) {
+    priceLimit = parseFloat(val);
+    const display = priceLimit >= priceMax ? `AED ${priceMax.toLocaleString()}` : `AED ${priceLimit.toLocaleString()}`;
+    document.getElementById('price-filter-val').textContent = display;
     renderItems();
   }
 
@@ -909,10 +982,17 @@ const CATEGORY_EMOJI = {
       : items.filter(i => i.Category.toLowerCase() === activeFilter);
     const filtered = (searchQuery
       ? base.filter(i => (i.Title + ' ' + (i.Description || '') + ' ' + (i.Category || '')).toLowerCase().includes(searchQuery))
-      : base).sort((a, b) => {
-        const aSold = a.Sold?.toLowerCase() === 'yes' ? 1 : 0;
-        const bSold = b.Sold?.toLowerCase() === 'yes' ? 1 : 0;
-        return aSold - bSold;
+      : base).filter(i => {
+        const p = parseFloat((i.Price || '').replace(/[^0-9.]/g, '')) || 0;
+        return p <= priceLimit || p === 0;
+      }).sort((a, b) => {
+        const aSold  = a.Sold?.toLowerCase() === 'yes' ? 1 : 0;
+        const bSold  = b.Sold?.toLowerCase() === 'yes' ? 1 : 0;
+        if (aSold !== bSold) return aSold - bSold;
+        const aPhoto = (getPhotosForTitle(a.Title).length > 0 || resolvePhotoUrl(a.Photos)) ? 0 : 1;
+        const bPhoto = (getPhotosForTitle(b.Title).length > 0 || resolvePhotoUrl(b.Photos)) ? 0 : 1;
+        if (aPhoto !== bPhoto) return aPhoto - bPhoto;
+        return a.Title.localeCompare(b.Title);
       });
 
     const available = items.filter(i => i.Sold?.toLowerCase() !== 'yes').length;
@@ -1005,7 +1085,7 @@ const CATEGORY_EMOJI = {
     document.getElementById('m-desc').textContent      = item.Description || '';
     const mLink = document.getElementById('m-link');
     const origLink = (item['Original Link'] || '').trim();
-    if (origLink) { mLink.href = origLink; mLink.style.display = 'inline-flex'; }
+    if (origLink) { mLink.href = origLink; mLink.style.display = 'flex'; }
     else { mLink.style.display = 'none'; }
     document.getElementById('m-condition').textContent       = item.Condition || '—';
     document.getElementById('m-age').textContent             = item.Age || '—';
