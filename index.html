@@ -121,8 +121,101 @@
     header { padding-bottom: 16px; margin-bottom: 16px; }
     .filters { margin-bottom: 16px; row-gap: 12px; }
     .filter-spacer { display: none; }
-    .search-wrap { width: 100% !important; flex-basis: 100%; order: 99; }
+    .price-filter-wrap { display: none !important; }
+    .search-wrap { flex: 1; order: 99; }
     .search-input { width: 100% !important; box-sizing: border-box; }
+    .mobile-filter-row { display: flex !important; }
+  }
+
+  /* Mobile filter row (search + filter icon button) */
+  .mobile-filter-row {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    order: 99;
+    flex-basis: 100%;
+  }
+  .mobile-filter-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline);
+    background: var(--surface-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--muted);
+    position: relative;
+    transition: border-color 0.15s;
+  }
+  .mobile-filter-btn.active { border-color: var(--primary); color: var(--primary); background: rgba(255,56,92,0.08); }
+  .mobile-filter-btn .filter-dot {
+    display: none;
+    position: absolute;
+    top: 4px; right: 4px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 1.5px solid white;
+  }
+  .mobile-filter-btn.active .filter-dot { display: block; }
+
+  /* Bottom sheet */
+  .bottom-sheet-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 200;
+    align-items: flex-end;
+  }
+  .bottom-sheet-backdrop.open { display: flex; }
+  .bottom-sheet {
+    width: 100%;
+    background: var(--canvas);
+    border-radius: 20px 20px 0 0;
+    padding: 0 24px 40px;
+    animation: slideUp 0.25s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  .bottom-sheet-handle {
+    width: 36px; height: 4px;
+    background: var(--surface-strong);
+    border-radius: 2px;
+    margin: 12px auto 20px;
+  }
+  .bottom-sheet-title {
+    font-size: 16px; font-weight: 700;
+    color: var(--ink); margin-bottom: 24px;
+  }
+  .bs-price-row {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 12px;
+  }
+  .bs-price-label { font-size: 13px; color: var(--muted); }
+  .bs-price-val { font-size: 14px; font-weight: 700; color: var(--ink); }
+  #bs-price-slider {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 4px;
+    border-radius: 2px; background: var(--hairline);
+    outline: none; cursor: pointer; margin-bottom: 24px;
+  }
+  #bs-price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--primary); cursor: pointer;
+    border: 3px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .bs-apply-btn {
+    width: 100%; padding: 14px;
+    background: var(--primary); color: white;
+    border: none; border-radius: var(--r-pill);
+    font-size: 15px; font-weight: 600; cursor: pointer;
   }
   .search-input {
     font-family: 'Inter', sans-serif;
@@ -719,6 +812,20 @@
 
 </div>
 
+<!-- BOTTOM SHEET (mobile price filter) -->
+<div class="bottom-sheet-backdrop" id="bs-backdrop" onclick="closeBsIfOutside(event)">
+  <div class="bottom-sheet">
+    <div class="bottom-sheet-handle"></div>
+    <div class="bottom-sheet-title">Filter by Price</div>
+    <div class="bs-price-row">
+      <span class="bs-price-label">Max price</span>
+      <span class="bs-price-val" id="bs-price-val">AED 0</span>
+    </div>
+    <input id="bs-price-slider" type="range" min="0" max="0" value="0" step="50" oninput="bsSliderInput(this.value)">
+    <button class="bs-apply-btn" onclick="applyBsFilter()">Show results</button>
+  </div>
+</div>
+
 <!-- MODAL -->
 <div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
   <div class="modal" id="modal">
@@ -957,6 +1064,16 @@ const CATEGORY_EMOJI = {
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input class="search-input" id="search-input" type="search" placeholder="Search items…" oninput="searchItems(this.value)">
+      </div>
+      <div class="mobile-filter-row">
+        <div class="search-wrap" style="flex:1">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="search-input" id="search-input-mobile" type="search" placeholder="Search items…" oninput="searchItems(this.value)">
+        </div>
+        <button class="mobile-filter-btn" id="mobile-filter-btn" onclick="openBottomSheet()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          <span class="filter-dot"></span>
+        </button>
       </div>`;
   }
 
@@ -965,6 +1082,11 @@ const CATEGORY_EMOJI = {
 
   function searchItems(q) {
     searchQuery = q.toLowerCase();
+    // keep both search inputs in sync
+    ['search-input','search-input-mobile'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.value.toLowerCase() !== searchQuery) el.value = q;
+    });
     renderItems();
   }
 
@@ -972,6 +1094,33 @@ const CATEGORY_EMOJI = {
     priceLimit = parseFloat(val);
     const display = priceLimit >= priceMax ? `AED ${priceMax.toLocaleString()}` : `AED ${priceLimit.toLocaleString()}`;
     document.getElementById('price-filter-val').textContent = display;
+    renderItems();
+  }
+
+  function openBottomSheet() {
+    const slider = document.getElementById('bs-price-slider');
+    slider.max   = priceMax;
+    slider.value = priceLimit >= priceMax ? priceMax : priceLimit;
+    slider.step  = 50;
+    document.getElementById('bs-price-val').textContent = `AED ${parseFloat(slider.value).toLocaleString()}`;
+    document.getElementById('bs-backdrop').classList.add('open');
+  }
+
+  function closeBsIfOutside(e) {
+    if (e.target === document.getElementById('bs-backdrop'))
+      document.getElementById('bs-backdrop').classList.remove('open');
+  }
+
+  function bsSliderInput(val) {
+    document.getElementById('bs-price-val').textContent = `AED ${parseFloat(val).toLocaleString()}`;
+  }
+
+  function applyBsFilter() {
+    const val = parseFloat(document.getElementById('bs-price-slider').value);
+    priceLimit = val;
+    const btn = document.getElementById('mobile-filter-btn');
+    if (btn) btn.classList.toggle('active', val < priceMax);
+    document.getElementById('bs-backdrop').classList.remove('open');
     renderItems();
   }
 
