@@ -201,7 +201,7 @@
   .card-image {
     width: 100%;
     aspect-ratio: 4/3;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     background: var(--surface-card);
   }
@@ -311,6 +311,11 @@
     margin-bottom: 6px;
     line-height: 1.3;
     letter-spacing: -0.2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: calc(1.3em * 2);
   }
 
   .card-desc {
@@ -366,7 +371,8 @@
   .item-card:hover {
     box-shadow: 0 4px 24px rgba(10,10,10,0.08);
   }
-  .card-wrap { display: flex; flex-direction: column; }
+  .card-wrap { display: flex; flex-direction: column; height: 100%; }
+  .card-wrap .item-card { flex: 1; }
   .card-original-price {
     font-size: 11px;
     color: var(--muted-soft);
@@ -967,11 +973,11 @@ const CATEGORY_EMOJI = {
     } else if (srcs.length === 1) {
       mImg.style.fontSize = '0';
       mImg.innerHTML = `<img src="${srcs[0]}" alt="${item.Title}"
-        style="width:100%;height:100%;object-fit:cover;border-radius:3px;">`;
+        style="width:100%;height:100%;object-fit:contain;border-radius:3px;">`;
     } else {
       mImg.style.fontSize = '0';
       const dots = srcs.map((_, i) => `<div class="carousel-dot${i===0?' active':''}" style="width:8px;height:8px"></div>`).join('');
-      const imgs = srcs.map(s => `<img src="${s}" alt="${item.Title}" style="object-fit:cover">`).join('');
+      const imgs = srcs.map(s => `<img src="${s}" alt="${item.Title}" style="object-fit:contain">`).join('');
       mImg.innerHTML = `
         <div class="carousel" id="car-modal" style="border-radius:3px;height:100%">
           <div class="carousel-track">${imgs}</div>
