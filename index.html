@@ -767,6 +767,78 @@
     transition: background 0.15s;
   }
   .modal-wa:hover { background: #1f1f1f; }
+
+  @media (max-width: 540px) {
+    .modal-backdrop {
+      padding: 0;
+      align-items: flex-end;
+      justify-content: stretch;
+    }
+    .modal {
+      max-width: 100%;
+      border-radius: 20px 20px 0 0;
+      border: none;
+      animation: modalSlideUp 0.28s cubic-bezier(0.32,0.72,0,1);
+      display: flex;
+      flex-direction: column;
+      max-height: 92vh;
+      overflow: hidden;
+    }
+    @keyframes modalSlideUp {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+    /* drag handle — floated over image */
+    .modal::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px; height: 4px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 2px;
+      z-index: 10;
+    }
+    .modal-close {
+      position: absolute;
+      top: 8px; right: 16px;
+      background: var(--surface-soft);
+      box-shadow: none;
+    }
+    .modal-image {
+      flex-shrink: 0;
+      aspect-ratio: 4/3;
+    }
+    /* scrollable middle */
+    .modal-content {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 20px 20px 0;
+    }
+    .modal-title { font-size: 22px; }
+    /* sticky price + CTA footer */
+    .modal-price-row {
+      position: sticky;
+      bottom: 0;
+      background: var(--canvas);
+      border-top: 1px solid var(--hairline);
+      padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+      margin-top: 16px;
+      margin-left: -20px;
+      margin-right: -20px;
+      width: calc(100% + 40px);
+    }
+    .modal-wa {
+      flex: 1;
+      justify-content: center;
+      height: 52px;
+      font-size: 16px;
+      border-radius: var(--r-pill);
+    }
+    .modal-price-row { gap: 20px; }
+  }
 </style>
 </head>
 <body>
