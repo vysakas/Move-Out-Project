@@ -1,10 +1,41 @@
 {
   "photos": {
+    "2-drawer-bedside-table-with-lockable-top-drawer-2": [
+      "photos/2-drawer-bedside-table-with-lockable-top-drawer-2/IMG_9252.jpg",
+      "photos/2-drawer-bedside-table-with-lockable-top-drawer-2/IMG_9253.jpg",
+      "photos/2-drawer-bedside-table-with-lockable-top-drawer-2/IMG_9254.jpg",
+      "photos/2-drawer-bedside-table-with-lockable-top-drawer-2/IMG_9257.jpg",
+      "photos/2-drawer-bedside-table-with-lockable-top-drawer-2/IMG_9258.jpg"
+    ],
+    "4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage": [
+      "photos/4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage/1.jpg",
+      "photos/4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage/2.jpg",
+      "photos/4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage/3.jpg",
+      "photos/4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage/4.jpg"
+    ],
+    "black-decker-1750w-steam-iron": [
+      "photos/black-decker-1750w-steam-iron/IMG_9275.jpg",
+      "photos/black-decker-1750w-steam-iron/IMG_9276.jpg",
+      "photos/black-decker-1750w-steam-iron/IMG_9277.jpg",
+      "photos/black-decker-1750w-steam-iron/IMG_9278.jpg",
+      "photos/black-decker-1750w-steam-iron/IMG_9279.jpg"
+    ],
+    "coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm": [
+      "photos/coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm/IMG_9309.jpg",
+      "photos/coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm/IMG_9311.jpg",
+      "photos/coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm/IMG_9313.jpg",
+      "photos/coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm/IMG_9315.jpg",
+      "photos/coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm/IMG_9316.jpg"
+    ],
     "colamy-atlas-ergonomic-high-back-mesh-office-chair": [
       "photos/colamy-atlas-ergonomic-high-back-mesh-office-chair/IMG_2534.jpg",
       "photos/colamy-atlas-ergonomic-high-back-mesh-office-chair/IMG_2535.jpg",
       "photos/colamy-atlas-ergonomic-high-back-mesh-office-chair/IMG_2536.jpg",
       "photos/colamy-atlas-ergonomic-high-back-mesh-office-chair/IMG_2537.jpg"
+    ],
+    "eufy-smart-scale-c1": [
+      "photos/eufy-smart-scale-c1/IMG_9288.jpg",
+      "photos/eufy-smart-scale-c1/IMG_9294.jpg"
     ],
     "ikea-besta-tv-bench": [
       "photos/ikea-besta-tv-bench/IMG_9152.jpg",
@@ -27,23 +58,35 @@
       "photos/ikea-bissa-shoe-cabinet-with-3-compartments/2.jpg",
       "photos/ikea-bissa-shoe-cabinet-with-3-compartments/3.jpg"
     ],
+    "ikea-bollsidan-laptop-stand-white-68x36-cm": [
+      "photos/ikea-bollsidan-laptop-stand-white-68x36-cm/IMG_9262.jpg",
+      "photos/ikea-bollsidan-laptop-stand-white-68x36-cm/IMG_9263.jpg",
+      "photos/ikea-bollsidan-laptop-stand-white-68x36-cm/IMG_9332.jpg"
+    ],
     "ikea-brusali-bedside-table": [
       "photos/ikea-brusali-bedside-table/IMG_2517.jpg",
       "photos/ikea-brusali-bedside-table/IMG_2518.jpg",
       "photos/ikea-brusali-bedside-table/IMG_2553.jpg"
     ],
+    "ikea-curtains": [
+      "photos/ikea-curtains/IMG_9317.jpg",
+      "photos/ikea-curtains/IMG_9320.jpg"
+    ],
     "ikea-fjadrar-cushion-cover-x-4": [
       "photos/ikea-fjadrar-cushion-cover-x-4/IMG_2532.jpg",
       "photos/ikea-fjadrar-cushion-cover-x-4/IMG_2533.jpg"
+    ],
+    "ikea-flaknan-standing-mirror-white-30x150-cm": [
+      "photos/ikea-flaknan-standing-mirror-white-30x150-cm/IMG_9268.jpg",
+      "photos/ikea-flaknan-standing-mirror-white-30x150-cm/IMG_9271.jpg",
+      "photos/ikea-flaknan-standing-mirror-white-30x150-cm/IMG_9272.jpg",
+      "photos/ikea-flaknan-standing-mirror-white-30x150-cm/IMG_9274.jpg"
     ],
     "ikea-friheten-corner-sofa-bed-with-storage": [
       "photos/ikea-friheten-corner-sofa-bed-with-storage/IMG_2520.jpg",
       "photos/ikea-friheten-corner-sofa-bed-with-storage/IMG_2521.jpg",
       "photos/ikea-friheten-corner-sofa-bed-with-storage/IMG_2522.jpg",
       "photos/ikea-friheten-corner-sofa-bed-with-storage/IMG_2523.jpg"
-    ],
-    "ikea-ingatorp-ingolf-extendable-table-and-4-chairs": [
-      "photos/ikea-ingatorp-ingolf-extendable-table-and-4-chairs/IMG_2442.jpg"
     ],
     "ikea-malm-chest-of-2-drawers": [
       "photos/ikea-malm-chest-of-2-drawers/IMG_2529.jpg",
@@ -64,11 +107,21 @@
       "photos/ikea-trulstorp-adjustable-coffee-table/IMG_2526.JPG",
       "photos/ikea-trulstorp-adjustable-coffee-table/IMG_2527.JPG"
     ],
+    "ikea-wall-mirror---langesund": [
+      "photos/ikea-wall-mirror---langesund/IMG_9336.jpg",
+      "photos/ikea-wall-mirror---langesund/IMG_9337.jpg"
+    ],
     "lg-27-inch-4k-uhd-led-monitor": [
       "photos/lg-27-inch-4k-uhd-led-monitor/IMG_2538.jpg",
       "photos/lg-27-inch-4k-uhd-led-monitor/IMG_2539.jpg",
       "photos/lg-27-inch-4k-uhd-led-monitor/IMG_2540.jpg",
       "photos/lg-27-inch-4k-uhd-led-monitor/IMG_2541.jpg"
+    ],
+    "royalford-ironing-board-with-steam-iron-rest": [
+      "photos/royalford-ironing-board-with-steam-iron-rest/IMG_9281.jpg",
+      "photos/royalford-ironing-board-with-steam-iron-rest/IMG_9283.jpg",
+      "photos/royalford-ironing-board-with-steam-iron-rest/IMG_9284.jpg",
+      "photos/royalford-ironing-board-with-steam-iron-rest/IMG_9286.jpg"
     ],
     "samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9": [
       "photos/samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9/1.jpeg",
@@ -80,8 +133,8 @@
       "photos/samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9/ae-top-mount-freezer-spacemax-457621-rt35cg5400s9sg-536257780.jpeg"
     ],
     "siemens-gas-cooking-range-hg2l10b51m-60x60cm": [
-      "photos/siemens-gas-cooking-range-hg2l10b51m-60x60cm/1.jpg",
       "photos/siemens-gas-cooking-range-hg2l10b51m-60x60cm/1.webp",
+      "photos/siemens-gas-cooking-range-hg2l10b51m-60x60cm/2.jpg",
       "photos/siemens-gas-cooking-range-hg2l10b51m-60x60cm/IMG_2560.jpg",
       "photos/siemens-gas-cooking-range-hg2l10b51m-60x60cm/IMG_2561.jpg",
       "photos/siemens-gas-cooking-range-hg2l10b51m-60x60cm/IMG_2562.jpg",
@@ -103,73 +156,86 @@
       "photos/tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model/S300865121_4.webp",
       "photos/tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model/S300865121_5.webp",
       "photos/tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model/S300865121_7.webp"
+    ],
+    "three-story-tv-cabinet-100x20x40cm": [
+      "photos/three-story-tv-cabinet-100x20x40cm/IMG_9296.jpg",
+      "photos/three-story-tv-cabinet-100x20x40cm/IMG_9298.jpg",
+      "photos/three-story-tv-cabinet-100x20x40cm/IMG_9299.jpg",
+      "photos/three-story-tv-cabinet-100x20x40cm/IMG_9301.jpg"
     ]
   },
   "slugMap": {
-    "panasonic-27l-4-in-1-convection-microwave-oven-nn-cd67-black": "panasonic-27l-4-in-1-convection-microwave-oven-nn-cd67-black",
-    "colamy-atlas-ergonomic-high-back-mesh-office-chair": "colamy-atlas-ergonomic-high-back-mesh-office-chair",
-    "ikea-hyllis-shelving-unit-inoutdoor-60x27x140-cm": "ikea-hyllis-shelving-unit-inoutdoor-60x27x140-cm",
-    "ikea-ingatorp-ingolf-extendable-table-and-4-chairs": "ikea-ingatorp-ingolf-extendable-table-and-4-chairs",
-    "wooden-storage-cabinet-with-2-door-cupboard-and-4-open-compartments-on-top": "wooden-storage-cabinet-with-2-door-cupboard-and-4-open-compartments-on-top",
-    "2-drawer-bedside-table-with-lockable-top-drawer-2": "2-drawer-bedside-table-with-lockable-top-drawer-2",
-    "ikea-bissa-shoe-cabinet-with-2-compartments": "ikea-bissa-shoe-cabinet-with-2-compartments",
-    "ikea-bollsidan-laptop-stand-white-68x36-cm": "ikea-bollsidan-laptop-stand-white-68x36-cm",
-    "ikea-wall-mirror---langesund": "ikea-wall-mirror---langesund",
     "ikea-flaknan-standing-mirror-white-30x150-cm": "ikea-flaknan-standing-mirror-white-30x150-cm",
-    "three-story-tv-cabinet-100x20x40cm": "three-story-tv-cabinet-100x20x40cm",
-    "4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage": "4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage",
-    "samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9": "samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9",
-    "coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm": "coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm",
-    "ikea-bissa-shoe-cabinet-with-3-compartments": "ikea-bissa-shoe-cabinet-with-3-compartments",
     "ikea-malm-bed-frame-high-w-4-storage-boxes-180x200-cm": "ikea-malm-bed-frame-high-w-4-storage-boxes-180x200-cm",
-    "ikea-rosentorp-bar-stool-with-backrest": "ikea-rosentorp-bar-stool-with-backrest",
-    "siemens-gas-cooking-range-hg2l10b51m-60x60cm": "siemens-gas-cooking-range-hg2l10b51m-60x60cm",
+    "ikea-ingatorp-ingolf-extendable-table-and-4-chairs": "ikea-ingatorp-ingolf-extendable-table-and-4-chairs",
+    "three-story-tv-cabinet-100x20x40cm": "three-story-tv-cabinet-100x20x40cm",
+    "coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm": "coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm",
     "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model": "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model",
     "ikea-billy-bookshelf": "ikea-billy-bookshelf",
-    "ikea-brusali-bedside-table": "ikea-brusali-bedside-table",
-    "lg-27-inch-4k-uhd-led-monitor": "lg-27-inch-4k-uhd-led-monitor",
-    "ikea-friheten-corner-sofa-bed-with-storage": "ikea-friheten-corner-sofa-bed-with-storage",
-    "ikea-besta-tv-bench": "ikea-besta-tv-bench",
-    "ikea-hovag-pocket-sprung-mattress-160x200-cm": "ikea-hovag-pocket-sprung-mattress-160x200-cm",
-    "ikea-curtains": "ikea-curtains",
     "lg-front-load-washing-machine-6-kg-6-motion-direct-drive": "lg-front-load-washing-machine-6-kg-6-motion-direct-drive",
-    "ikea-malm-chest-of-2-drawers": "ikea-malm-chest-of-2-drawers",
+    "ikea-bissa-shoe-cabinet-with-2-compartments": "ikea-bissa-shoe-cabinet-with-2-compartments",
+    "ikea-bissa-shoe-cabinet-with-3-compartments": "ikea-bissa-shoe-cabinet-with-3-compartments",
+    "siemens-gas-cooking-range-hg2l10b51m-60x60cm": "siemens-gas-cooking-range-hg2l10b51m-60x60cm",
+    "ikea-curtains": "ikea-curtains",
+    "ikea-friheten-corner-sofa-bed-with-storage": "ikea-friheten-corner-sofa-bed-with-storage",
+    "samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9": "samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9",
+    "ikea-hyllis-shelving-unit-inoutdoor-60x27x140-cm": "ikea-hyllis-shelving-unit-inoutdoor-60x27x140-cm",
+    "ikea-rosentorp-bar-stool-with-backrest": "ikea-rosentorp-bar-stool-with-backrest",
+    "ikea-brusali-bedside-table": "ikea-brusali-bedside-table",
+    "ikea-hovag-pocket-sprung-mattress-160x200-cm": "ikea-hovag-pocket-sprung-mattress-160x200-cm",
+    "panasonic-27l-4-in-1-convection-microwave-oven-nn-cd67-black": "panasonic-27l-4-in-1-convection-microwave-oven-nn-cd67-black",
+    "ikea-bollsidan-laptop-stand-white-68x36-cm": "ikea-bollsidan-laptop-stand-white-68x36-cm",
     "ikea-malm-office-desk": "ikea-malm-office-desk",
+    "wooden-storage-cabinet-with-2-door-cupboard-and-4-open-compartments-on-top": "wooden-storage-cabinet-with-2-door-cupboard-and-4-open-compartments-on-top",
     "ikea-fjadrar-cushion-cover-x-4": "ikea-fjadrar-cushion-cover-x-4",
+    "royalford-ironing-board-with-steam-iron-rest": "royalford-ironing-board-with-steam-iron-rest",
+    "2-drawer-bedside-table-with-lockable-top-drawer-2": "2-drawer-bedside-table-with-lockable-top-drawer-2",
+    "ikea-besta-tv-bench": "ikea-besta-tv-bench",
+    "colamy-atlas-ergonomic-high-back-mesh-office-chair": "colamy-atlas-ergonomic-high-back-mesh-office-chair",
+    "ikea-wall-mirror---langesund": "ikea-wall-mirror---langesund",
+    "black-decker-1750w-steam-iron": "black-decker-1750w-steam-iron",
+    "ikea-malm-chest-of-2-drawers": "ikea-malm-chest-of-2-drawers",
+    "4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage": "4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage",
     "ikea-trulstorp-adjustable-coffee-table": "ikea-trulstorp-adjustable-coffee-table",
+    "lg-27-inch-4k-uhd-led-monitor": "lg-27-inch-4k-uhd-led-monitor",
+    "eufy-smart-scale-c1": "eufy-smart-scale-c1",
+    "ikea-wall-mirror-langesund": "ikea-wall-mirror---langesund",
     "samsung-top-mount-refrigerator-inox-silver-345-litres-rt45cg5404s9": "samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9"
   },
   "titlesMap": {
-    "Panasonic 27L 4-in-1 Convection Microwave Oven, NN-CD67, Black": "panasonic-27l-4-in-1-convection-microwave-oven-nn-cd67-black",
-    "COLAMY ATLAS Ergonomic High Back Mesh Office Chair": "colamy-atlas-ergonomic-high-back-mesh-office-chair",
-    "IKEA HYLLIS Shelving unit, in/outdoor, 60x27x140 cm": "ikea-hyllis-shelving-unit-inoutdoor-60x27x140-cm",
-    "IKEA INGATORP / INGOLF Extendable Table and 4 Chairs": "ikea-ingatorp-ingolf-extendable-table-and-4-chairs",
-    "Wooden storage cabinet with 2-door cupboard and 4 open compartments on top.": "wooden-storage-cabinet-with-2-door-cupboard-and-4-open-compartments-on-top",
-    "2-drawer bedside table with lockable top drawer *2": "2-drawer-bedside-table-with-lockable-top-drawer-2",
-    "IKEA BISSA Shoe cabinet with 2 compartments": "ikea-bissa-shoe-cabinet-with-2-compartments",
-    "IKEA BOLLSIDAN Laptop stand, white, 68x36 cm": "ikea-bollsidan-laptop-stand-white-68x36-cm",
-    "IKEA Wall Mirror - LANGESUND": "ikea-wall-mirror---langesund",
     "IKEA FLAKNAN Standing mirror, white, 30x150 cm": "ikea-flaknan-standing-mirror-white-30x150-cm",
-    "Three-story TV Cabinet, 100x20x40cm": "three-story-tv-cabinet-100x20x40cm",
-    "4-door dark walnut wooden wardrobe with metal handles, full-height storage": "4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage",
-    "Samsung Top Mount Refrigerator Inox Silver 345 Litres -RT45CG5404S9": "samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9",
-    "Coat Stand with 2-Tier Shoe Storage Bench , 75 * 40 * 168cm": "coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm",
-    "IKEA BISSA Shoe cabinet with 3 compartments": "ikea-bissa-shoe-cabinet-with-3-compartments",
     "IKEA MALM Bed frame, high, w 4 storage boxes, 180x200 cm": "ikea-malm-bed-frame-high-w-4-storage-boxes-180x200-cm",
-    "IKEA ROSENTORP Bar stool with backrest": "ikea-rosentorp-bar-stool-with-backrest",
-    "Siemens Gas Cooking Range HG2L10B51M 60x60cm": "siemens-gas-cooking-range-hg2l10b51m-60x60cm",
+    "IKEA INGATORP / INGOLF Extendable Table and 4 Chairs": "ikea-ingatorp-ingolf-extendable-table-and-4-chairs",
+    "Three-story TV Cabinet, 100x20x40cm": "three-story-tv-cabinet-100x20x40cm",
+    "Coat Stand with 2-Tier Shoe Storage Bench , 75 * 40 * 168cm": "coat-stand-with-2-tier-shoe-storage-bench-75-40-168cm",
     "TCL 65C755 4K QD-Mini LED Google Televison 65inch (2024 Model)": "tcl-65c755-4k-qd-mini-led-google-televison-65inch-2024-model",
     "IKEA Billy BookShelf": "ikea-billy-bookshelf",
-    "IKEA BRUSALI Bedside table": "ikea-brusali-bedside-table",
-    "LG 27 inch 4K UHD LED Monitor": "lg-27-inch-4k-uhd-led-monitor",
-    "IKEA FRIHETEN Corner Sofa-bed with Storage": "ikea-friheten-corner-sofa-bed-with-storage",
-    "IKEA BESTÅ TV Bench": "ikea-besta-tv-bench",
-    "IKEA HOVAG Pocket sprung mattress, 160x200 cm": "ikea-hovag-pocket-sprung-mattress-160x200-cm",
-    "IKEA Curtains": "ikea-curtains",
     "LG Front Load Washing Machine, 6 Kg, 6 Motion Direct Drive": "lg-front-load-washing-machine-6-kg-6-motion-direct-drive",
-    "IKEA MALM Chest of 2 Drawers": "ikea-malm-chest-of-2-drawers",
+    "IKEA BISSA Shoe cabinet with 2 compartments": "ikea-bissa-shoe-cabinet-with-2-compartments",
+    "IKEA BISSA Shoe cabinet with 3 compartments": "ikea-bissa-shoe-cabinet-with-3-compartments",
+    "Siemens Gas Cooking Range HG2L10B51M 60x60cm": "siemens-gas-cooking-range-hg2l10b51m-60x60cm",
+    "IKEA Curtains": "ikea-curtains",
+    "IKEA FRIHETEN Corner Sofa-bed with Storage": "ikea-friheten-corner-sofa-bed-with-storage",
+    "Samsung Top Mount Refrigerator Inox Silver 345 Litres -RT45CG5404S9": "samsung-top-mount-refrigerator-inox-silver-345-litres--rt45cg5404s9",
+    "IKEA HYLLIS Shelving unit, in/outdoor, 60x27x140 cm": "ikea-hyllis-shelving-unit-inoutdoor-60x27x140-cm",
+    "IKEA ROSENTORP Bar stool with backrest": "ikea-rosentorp-bar-stool-with-backrest",
+    "IKEA BRUSALI Bedside table": "ikea-brusali-bedside-table",
+    "IKEA HOVAG Pocket sprung mattress, 160x200 cm": "ikea-hovag-pocket-sprung-mattress-160x200-cm",
+    "Panasonic 27L 4-in-1 Convection Microwave Oven, NN-CD67, Black": "panasonic-27l-4-in-1-convection-microwave-oven-nn-cd67-black",
+    "IKEA BOLLSIDAN Laptop stand, white, 68x36 cm": "ikea-bollsidan-laptop-stand-white-68x36-cm",
     "IKEA MALM Office Desk": "ikea-malm-office-desk",
+    "Wooden storage cabinet with 2-door cupboard and 4 open compartments on top.": "wooden-storage-cabinet-with-2-door-cupboard-and-4-open-compartments-on-top",
     "IKEA FJÄDRAR Cushion & Cover x 4": "ikea-fjadrar-cushion-cover-x-4",
-    "IKEA TRULSTORP Adjustable Coffee table": "ikea-trulstorp-adjustable-coffee-table"
+    "Royalford ironing board with steam iron rest": "royalford-ironing-board-with-steam-iron-rest",
+    "2-drawer bedside table with lockable top drawer *2": "2-drawer-bedside-table-with-lockable-top-drawer-2",
+    "IKEA BESTÅ TV Bench": "ikea-besta-tv-bench",
+    "COLAMY ATLAS Ergonomic High Back Mesh Office Chair": "colamy-atlas-ergonomic-high-back-mesh-office-chair",
+    "IKEA Wall Mirror - LANGESUND": "ikea-wall-mirror---langesund",
+    "Black & Decker 1750W Steam Iron": "black-decker-1750w-steam-iron",
+    "IKEA MALM Chest of 2 Drawers": "ikea-malm-chest-of-2-drawers",
+    "4-door dark walnut wooden wardrobe with metal handles, full-height storage": "4-door-dark-walnut-wooden-wardrobe-with-metal-handles-full-height-storage",
+    "IKEA TRULSTORP Adjustable Coffee table": "ikea-trulstorp-adjustable-coffee-table",
+    "LG 27 inch 4K UHD LED Monitor": "lg-27-inch-4k-uhd-led-monitor",
+    "Eufy Smart Scale C1": "eufy-smart-scale-c1"
   }
 }
