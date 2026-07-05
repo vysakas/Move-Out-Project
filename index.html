@@ -537,20 +537,30 @@
     position: relative;
     cursor: default;
     pointer-events: none;
-    opacity: 0.45;
-    filter: grayscale(0.4);
+    opacity: 0.5;
+    filter: grayscale(0.8) brightness(0.95);
   }
   .sold-overlay::after {
-    content: 'SOLD';
+    content: '';
     position: absolute;
-    top: 12px; right: 12px;
+    inset: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: var(--r-lg);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .sold-badge {
+    position: absolute;
+    top: 10px; left: 10px;
     background: var(--ink);
-    color: var(--on-primary);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     padding: 4px 10px;
     border-radius: var(--r-pill);
+    z-index: 3;
   }
 
   /* CONTACT STRIP */
@@ -1241,6 +1251,7 @@ const CATEGORY_EMOJI = {
            onclick="${sold ? '' : `openModal(${item.id})`}">
         <div class="card-image-wrap">
           ${carousel || `<div class="card-image-placeholder">${emoji}</div>`}
+          ${sold ? `<div class="sold-badge">Sold</div>` : ''}
           <div class="card-category" style="background:${catCfg.bg};color:${catCfg.color}">${catCfg.icon}${item.Category || ''}</div>
         </div>
         <div class="card-body">
