@@ -1346,9 +1346,9 @@ const CATEGORY_EMOJI = {
     else { availWrap.style.display = 'none'; }
     document.getElementById('m-price').innerHTML             =
       `<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:400;color:var(--muted)">AED</span><span>${price ? price.toLocaleString() : '—'}</span>`;
-    const photos = getPhotosForTitle(item.Title);
-    const remote = resolvePhotoUrl(item.Photos);
-    const firstPhoto = photos.length > 0 ? photos[0] : (remote || '');
+    const waPhotos = getPhotosForTitle(item.Title);
+    const waRemote = resolvePhotoUrl(item.Photos);
+    const firstPhoto = waPhotos.length > 0 ? waPhotos[0] : (waRemote || '');
     const photoUrl = firstPhoto ? `${SITE_URL}/${firstPhoto.replace(/^\//, '')}` : '';
     const msg = encodeURIComponent(
       `Hi! I saw your moving sale and I'm interested in the "${toDisplayTitle(item.Title)}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?\n\n${photoUrl}`
