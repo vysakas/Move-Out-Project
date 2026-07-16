@@ -1475,7 +1475,7 @@ const CATEGORY_EMOJI = {
     const val = parseInt(document.getElementById('captcha-input').value);
     if (val === captchaAnswer) {
       closeCaptcha();
-      window.open(captchaPendingUrl, '_blank');
+      location.href = captchaPendingUrl;
     } else {
       document.getElementById('captcha-input').classList.add('error');
       document.getElementById('captcha-error').textContent = 'Incorrect — try again';
