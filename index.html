@@ -505,18 +505,28 @@
   }
 
   .condition-badge {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0;
-    text-transform: uppercase;
     font-size: 11px;
+    font-weight: 600;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
     padding: 4px 10px;
     border-radius: var(--r-pill);
   }
   .cond-excellent { background: #dcfce7; color: #166534; }
   .cond-good      { background: var(--surface-card); color: var(--body); }
   .cond-fair      { background: #fee2e2; color: #991b1b; }
+  .avail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--surface-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill);
+    padding: 3px 9px;
+  }
 
   .item-card:hover {
     box-shadow: 0 4px 24px rgba(10,10,10,0.08);
@@ -935,6 +945,10 @@
           Original Price
           <strong id="m-original-price"></strong>
         </div>
+        <div class="modal-meta-item" id="m-avail-wrap" style="display:none">
+          Available From
+          <strong id="m-avail"></strong>
+        </div>
       </div>
       <div class="modal-price-row">
         <div class="modal-price" id="m-price"></div>
@@ -1241,6 +1255,7 @@ const CATEGORY_EMOJI = {
       const catCfg    = CATEGORY_CONFIG[cat] || CATEGORY_DEFAULT;
       const emoji     = CATEGORY_EMOJI[cat] || '📦';
       const condition  = item.Condition || '';
+      const availFrom  = item['Available from'] || '';
       const price      = parseFloat((item.Price || '').replace(/[^0-9.]/g, '')) || 0;
       const origPrice  = parseFloat((item['Orginal price'] || item['Original Price'] || '').replace(/[^0-9.]/g, '')) || 0;
       const carousel = buildCarousel(item.Title, item.Photos, item.id);
@@ -1262,7 +1277,7 @@ const CATEGORY_EMOJI = {
               <div class="price"><sub>AED</sub>${price ? price.toLocaleString() : '—'}</div>
               ${origPrice ? `<div class="card-original-price">Original Price: AED ${origPrice.toLocaleString()}</div>` : ''}
             </div>
-            ${condition ? `<span class="condition-badge ${condClass[condition] || ''}">${condition}</span>` : ''}
+            ${!sold && availFrom ? `<span class="avail-badge">📅 ${availFrom}</span>` : ''}
           </div>
         </div>
       </div>
@@ -1324,6 +1339,10 @@ const CATEGORY_EMOJI = {
     document.getElementById('m-age').textContent             = item.Age || '—';
     const origPrice = parseFloat((item['Orginal price'] || item['Original Price'] || '').replace(/[^0-9.]/g, '')) || 0;
     document.getElementById('m-original-price').textContent  = origPrice ? `AED ${origPrice.toLocaleString()}` : '—';
+    const avail = (item['Available from'] || '').trim();
+    const availWrap = document.getElementById('m-avail-wrap');
+    if (avail) { document.getElementById('m-avail').textContent = avail; availWrap.style.display = ''; }
+    else { availWrap.style.display = 'none'; }
     document.getElementById('m-price').innerHTML             =
       `<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:400;color:var(--muted)">AED</span><span>${price ? price.toLocaleString() : '—'}</span>`;
     const msg = encodeURIComponent(`Hi! I saw your moving sale and I'm interested in the "${toDisplayTitle(item.Title)}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?`);
