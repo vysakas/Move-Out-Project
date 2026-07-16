@@ -1346,14 +1346,13 @@ const CATEGORY_EMOJI = {
     else { availWrap.style.display = 'none'; }
     document.getElementById('m-price').innerHTML             =
       `<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:400;color:var(--muted)">AED</span><span>${price ? price.toLocaleString() : '—'}</span>`;
-    const waPhotos = getPhotosForTitle(item.Title);
-    const waRemote = resolvePhotoUrl(item.Photos);
-    const firstPhoto = waPhotos.length > 0 ? waPhotos[0] : (waRemote || '');
-    const photoUrl = firstPhoto ? `${SITE_URL}/${firstPhoto.replace(/^\//, '')}` : '';
+    const itemSlug = encodeURIComponent(item.Title.trim().toLowerCase().replace(/\s+/g, '-'));
+    const itemUrl = `${SITE_URL}/#item-${item.id}`;
     const msg = encodeURIComponent(
-      `Hi! I saw your moving sale and I'm interested in the "${toDisplayTitle(item.Title)}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?\n\n${photoUrl}`
+      `Hi! I saw your moving sale and I'm interested in the "${toDisplayTitle(item.Title)}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?\n\n${itemUrl}`
     );
     document.getElementById('m-wa').href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+    window.location.hash = `item-${item.id}`;
     document.getElementById('modal-backdrop').classList.add('open');
   }
 
@@ -1363,7 +1362,15 @@ const CATEGORY_EMOJI = {
   }
   function closeModalBtn() {
     document.getElementById('modal-backdrop').classList.remove('open');
-}
+    history.replaceState(null, '', location.pathname);
+  }
+
+  function openModalFromHash() {
+    const hash = window.location.hash;
+    if (!hash.startsWith('#item-')) return;
+    const id = parseInt(hash.replace('#item-', ''));
+    if (!isNaN(id)) openModal(id);
+  }
 
   // Fetch a short description: search Wikipedia for the best matching article
   async function fetchDescription(title) {
@@ -1439,6 +1446,7 @@ const CATEGORY_EMOJI = {
       buildFilters(items);
       renderItems();
       document.querySelectorAll('.carousel').forEach(initCarouselTouch);
+      openModalFromHash();
 
       // Update footer timestamp
       const now = new Date();
