@@ -963,6 +963,7 @@
   const SHEET_ID   = '1Ah0YbaHywH8UaLanQqizPH2IT-n6uYeFTc25w0dQi_g';
   const CSV_URL    = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
   const WA_NUMBER  = '917896365690';
+  const SITE_URL   = 'https://move-out-project.vercel.app';
   // ────────────────────────────────────────────────────────
 
 const CATEGORY_CONFIG = {
@@ -1345,7 +1346,13 @@ const CATEGORY_EMOJI = {
     else { availWrap.style.display = 'none'; }
     document.getElementById('m-price').innerHTML             =
       `<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:400;color:var(--muted)">AED</span><span>${price ? price.toLocaleString() : '—'}</span>`;
-    const msg = encodeURIComponent(`Hi! I saw your moving sale and I'm interested in the "${toDisplayTitle(item.Title)}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?`);
+    const photos = getPhotosForTitle(item.Title);
+    const remote = resolvePhotoUrl(item.Photos);
+    const firstPhoto = photos.length > 0 ? photos[0] : (remote || '');
+    const photoUrl = firstPhoto ? `${SITE_URL}/${firstPhoto.replace(/^\//, '')}` : '';
+    const msg = encodeURIComponent(
+      `Hi! I saw your moving sale and I'm interested in the "${toDisplayTitle(item.Title)}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?\n\n${photoUrl}`
+    );
     document.getElementById('m-wa').href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
     document.getElementById('modal-backdrop').classList.add('open');
   }
