@@ -121,7 +121,7 @@ for t in sorted(added):
 
 # ── 4. HEIC → JPEG & collect photos ──────────────────────────────────────────
 
-exts = ('.jpg', '.jpeg', '.png', '.webp')
+exts = ('.jpg', '.jpeg', '.png', '.webp', '.JPG', '.JPEG', '.PNG')
 manifest_photos = {}
 
 for item_folder in sorted(os.listdir(PHOTOS_DIR)):
