@@ -1630,6 +1630,7 @@ const CATEGORY_EMOJI = {
   }
 
   function openCarPage(id) {
+    if (window.innerWidth < 768) { openModal(id); return; }
     const item = items.find(i => i.id === id);
     if (!item) return;
     const price    = parseFloat((item.Price || '').replace(/[^0-9.]/g, '')) || 0;
