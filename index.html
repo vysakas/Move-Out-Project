@@ -571,6 +571,15 @@
     .car-card .card-image { width: 100%; height: 240px; object-fit: cover; }
     .car-card .card-image-placeholder { height: 240px; }
     .car-card .carousel { height: 240px; aspect-ratio: unset; }
+  .card-video-wrap { position: relative; flex-shrink: 0; width: 100%; height: 100%; cursor: pointer; }
+  .card-video-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(0,0,0,0.55); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; pointer-events: none;
+    transition: opacity 0.2s;
+  }
   }
   .card-original-price {
     font-size: 11px;
@@ -1393,22 +1402,41 @@ const CATEGORY_EMOJI = {
       return ''; // let placeholder show
     }
 
-    const srcs = photos.length > 0 ? photos.map(encodePath) : [remote];
+    const allSrcs = photos.length > 0 ? photos.map(encodePath) : [remote];
+    const isVideo = s => /\.(mp4|mov|webm)$/i.test(s);
+    const videoSrc = allSrcs.find(isVideo);
+    const imageSrcs = allSrcs.filter(s => !isVideo(s));
 
-    if (srcs.length === 1) {
-      return `<img class="card-image" src="${srcs[0]}" alt="${title}" loading="lazy"
+    // Build ordered slides: video first, then images
+    const slides = [
+      ...(videoSrc ? [`<div class="card-video-wrap" onclick="toggleCardVideo(this,event)">
+          <video src="${videoSrc}" playsinline preload="metadata" loop style="width:100%;height:100%;object-fit:cover;flex-shrink:0;display:block;"></video>
+          <div class="card-video-play">&#9654;</div>
+        </div>`] : []),
+      ...imageSrcs.map(s => `<img src="${s}" alt="${title}" loading="lazy">`)
+    ];
+
+    if (slides.length === 1 && !videoSrc) {
+      return `<img class="card-image" src="${imageSrcs[0]}" alt="${title}" loading="lazy"
                    onerror="this.style.display='none'">`;
     }
 
-    const dots  = srcs.map((_, i) => `<div class="carousel-dot${i === 0 ? ' active' : ''}"></div>`).join('');
-    const imgs  = srcs.map(s => `<img src="${s}" alt="${title}" loading="lazy">`).join('');
+    const dots = slides.map((_, i) => `<div class="carousel-dot${i === 0 ? ' active' : ''}"></div>`).join('');
     return `
       <div class="carousel" id="car-${id}">
-        <div class="carousel-track">${imgs}</div>
+        <div class="carousel-track">${slides.join('')}</div>
         <button class="carousel-btn prev" onclick="slideCarousel('car-${id}',-1,event)">&#8249;</button>
         <button class="carousel-btn next" onclick="slideCarousel('car-${id}', 1,event)">&#8250;</button>
         <div class="carousel-dots">${dots}</div>
       </div>`;
+  }
+
+  function toggleCardVideo(wrap, e) {
+    e.stopPropagation();
+    const vid = wrap.querySelector('video');
+    const btn = wrap.querySelector('.card-video-play');
+    if (vid.paused) { vid.play(); btn.style.opacity = '0'; }
+    else { vid.pause(); btn.style.opacity = '1'; }
   }
 
   function slideCarousel(carId, dir, e) {
