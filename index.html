@@ -685,7 +685,7 @@
     background: var(--canvas);
     border: 1px solid var(--hairline);
     border-radius: var(--r-xl);
-    max-width: 480px;
+    max-width: 720px;
     width: 100%;
     padding: 0;
     position: relative;
@@ -743,6 +743,8 @@
     line-height: 1.6;
     margin-bottom: 20px;
   }
+  .modal-desc p { margin: 0 0 10px; }
+  .modal-desc p:last-child { margin-bottom: 0; }
   .modal-meta {
     display: flex;
     gap: 24px;
@@ -1408,7 +1410,7 @@ const CATEGORY_EMOJI = {
       initCarouselTouch(document.getElementById('car-modal'));
     }
     document.getElementById('m-title').textContent     = toDisplayTitle(item.Title);
-    document.getElementById('m-desc').textContent      = item.Description || '';
+    document.getElementById('m-desc').innerHTML        = (item.Description || '').split(/\n+/).map(p => p.trim()).filter(Boolean).map(p => `<p>${p}</p>`).join('');
     const mLink = document.getElementById('m-link');
     const origLink = (item['Original Link'] || '').trim();
     if (origLink) { mLink.href = origLink; mLink.style.display = 'flex'; }
