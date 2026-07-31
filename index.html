@@ -725,12 +725,9 @@
     position: relative;
     width: 100%;
     background: #000;
-    aspect-ratio: 16/9;
-    overflow: hidden;
   }
-  .cp-gallery .carousel { height: 100%; width: 100%; border-radius: 0; }
-  .cp-gallery .carousel-track { height: 100%; }
-  .cp-gallery .carousel-track img { object-fit: cover; height: 100%; width: 100vw; max-width: 960px; }
+  .cp-gallery .carousel { width: 100%; border-radius: 0; }
+  .cp-gallery .carousel-track img { object-fit: cover; width: 100%; }
 
   /* Back button */
   .cp-back {
@@ -1635,29 +1632,33 @@ const CATEGORY_EMOJI = {
     if (!item) return;
     const price    = parseFloat((item.Price || '').replace(/[^0-9.]/g, '')) || 0;
     const origPrice = parseFloat((item['Orginal price'] || item['Original Price'] || '').replace(/[^0-9.]/g, '')) || 0;
-    const photos   = getPhotosForTitle(item.Title);
-    const remote   = resolvePhotoUrl(item.Photos);
-    const srcs     = (photos.length > 0 ? photos : (remote ? [remote] : [])).map(s => s.startsWith('http') ? s : encodePath(s));
+    const allFiles  = getPhotosForTitle(item.Title);
+    const remote    = resolvePhotoUrl(item.Photos);
+    const allSrcs   = (allFiles.length > 0 ? allFiles : (remote ? [remote] : [])).map(s => s.startsWith('http') ? s : encodePath(s));
+    const isVideo   = s => /\.(mp4|mov|webm)$/i.test(s);
+    const videoSrc  = allSrcs.find(isVideo);
+    const imageSrcs = allSrcs.filter(s => !isVideo(s));
 
-    // Gallery
+    // Build gallery: video first (if exists), then photo carousel
     const gallery = document.getElementById('cp-gallery');
-    const backBtn = gallery.querySelector('.cp-back');
-    if (srcs.length === 0) {
-      gallery.innerHTML = '';
-      gallery.appendChild(backBtn);
-    } else {
-      const dots = srcs.map((_, i) => `<div class="carousel-dot${i===0?' active':''}" style="width:8px;height:8px"></div>`).join('');
-      const imgs = srcs.map(s => `<img src="${s}" alt="${item.Title}" style="object-fit:cover;width:100%;height:100%">`).join('');
-      gallery.innerHTML = `
-        <div class="carousel" id="car-cp" style="height:100%;border-radius:0">
+    let galleryHTML = '';
+    if (videoSrc) {
+      galleryHTML += `<video class="cp-video" src="${videoSrc}" controls playsinline preload="metadata" style="width:100%;display:block;background:#000;max-height:520px;object-fit:contain;"></video>`;
+    }
+    if (imageSrcs.length > 0) {
+      const dots = imageSrcs.map((_, i) => `<div class="carousel-dot${i===0?' active':''}"></div>`).join('');
+      const imgs = imageSrcs.map(s => `<img src="${s}" alt="${item.Title}" style="object-fit:cover;width:100%;height:100%">`).join('');
+      galleryHTML += `
+        <div class="carousel" id="car-cp" style="height:360px;border-radius:0">
           <div class="carousel-track">${imgs}</div>
           <button class="carousel-btn prev" onclick="slideCarousel('car-cp',-1,event)">&#8249;</button>
           <button class="carousel-btn next" onclick="slideCarousel('car-cp', 1,event)">&#8250;</button>
           <div class="carousel-dots">${dots}</div>
         </div>`;
-      gallery.insertAdjacentHTML('afterbegin', '<button class="cp-back" onclick="closeCarPage()">&#8592; Back</button>');
-      initCarouselTouch(document.getElementById('car-cp'));
     }
+    gallery.innerHTML = galleryHTML;
+    gallery.insertAdjacentHTML('afterbegin', '<button class="cp-back" onclick="closeCarPage()">&#8592; Back</button>');
+    if (document.getElementById('car-cp')) initCarouselTouch(document.getElementById('car-cp'));
 
     document.getElementById('cp-title').textContent = toDisplayTitle(item.Title);
     document.getElementById('cp-price').innerHTML   = price ? `<sub>AED</sub>${price.toLocaleString()}` : '—';
