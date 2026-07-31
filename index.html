@@ -570,6 +570,7 @@
     .car-card .card-image-wrap { max-height: 240px; overflow: hidden; }
     .car-card .card-image { width: 100%; height: 240px; object-fit: cover; }
     .car-card .card-image-placeholder { height: 240px; }
+    .car-card .carousel { height: 240px; aspect-ratio: unset; }
   }
   .card-original-price {
     font-size: 11px;
@@ -726,8 +727,10 @@
     width: 100%;
     background: #000;
   }
-  .cp-gallery .carousel { width: 100%; border-radius: 0; }
-  .cp-gallery .carousel-track img { object-fit: cover; width: 100%; }
+  .cp-gallery .carousel { width: 100%; border-radius: 0; aspect-ratio: unset; height: 360px; }
+  .cp-gallery .carousel-track { height: 100%; }
+  .cp-gallery .carousel-track img { object-fit: cover; width: 100%; height: 100%; }
+  .cp-gallery .carousel-btn { opacity: 0.85; }
 
   /* Back button */
   .cp-back {
@@ -1639,26 +1642,22 @@ const CATEGORY_EMOJI = {
     const videoSrc  = allSrcs.find(isVideo);
     const imageSrcs = allSrcs.filter(s => !isVideo(s));
 
-    // Build gallery: video first (if exists), then photo carousel
+    // Build unified carousel: video first, then photos
     const gallery = document.getElementById('cp-gallery');
-    let galleryHTML = '';
-    if (videoSrc) {
-      galleryHTML += `<video class="cp-video" src="${videoSrc}" controls playsinline preload="metadata" style="width:100%;display:block;background:#000;max-height:520px;object-fit:contain;"></video>`;
-    }
-    if (imageSrcs.length > 0) {
-      const dots = imageSrcs.map((_, i) => `<div class="carousel-dot${i===0?' active':''}"></div>`).join('');
-      const imgs = imageSrcs.map(s => `<img src="${s}" alt="${item.Title}" style="object-fit:cover;width:100%;height:100%">`).join('');
-      galleryHTML += `
-        <div class="carousel" id="car-cp" style="height:360px;border-radius:0">
-          <div class="carousel-track">${imgs}</div>
-          <button class="carousel-btn prev" onclick="slideCarousel('car-cp',-1,event)">&#8249;</button>
-          <button class="carousel-btn next" onclick="slideCarousel('car-cp', 1,event)">&#8250;</button>
-          <div class="carousel-dots">${dots}</div>
-        </div>`;
-    }
-    gallery.innerHTML = galleryHTML;
+    const allSlides = [
+      ...(videoSrc ? [`<video src="${videoSrc}" controls playsinline preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;flex-shrink:0;display:block;"></video>`] : []),
+      ...imageSrcs.map(s => `<img src="${s}" alt="${item.Title}" style="object-fit:cover;width:100%;height:100%;flex-shrink:0;">`)
+    ];
+    const dots = allSlides.map((_, i) => `<div class="carousel-dot${i===0?' active':''}"></div>`).join('');
+    gallery.innerHTML = `
+      <div class="carousel" id="car-cp" style="border-radius:0">
+        <div class="carousel-track">${allSlides.join('')}</div>
+        <button class="carousel-btn prev" onclick="slideCarousel('car-cp',-1,event)">&#8249;</button>
+        <button class="carousel-btn next" onclick="slideCarousel('car-cp', 1,event)">&#8250;</button>
+        <div class="carousel-dots">${dots}</div>
+      </div>`;
     gallery.insertAdjacentHTML('afterbegin', '<button class="cp-back" onclick="closeCarPage()">&#8592; Back</button>');
-    if (document.getElementById('car-cp')) initCarouselTouch(document.getElementById('car-cp'));
+    initCarouselTouch(document.getElementById('car-cp'));
 
     document.getElementById('cp-title').textContent = toDisplayTitle(item.Title);
     document.getElementById('cp-price').innerHTML   = price ? `<sub>AED</sub>${price.toLocaleString()}` : '—';
