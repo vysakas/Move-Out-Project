@@ -867,11 +867,15 @@
     background: var(--canvas);
     border-top: 1px solid var(--hairline);
     padding: 14px 24px calc(14px + env(safe-area-inset-bottom));
+    z-index: 201;
+  }
+  .cp-cta-bar-inner {
+    max-width: 960px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    z-index: 201;
   }
   .cp-cta-price { font-size: 22px; font-weight: 800; color: var(--ink); }
   .cp-cta-price sub { font-size: 12px; font-weight: 500; color: var(--muted); vertical-align: middle; margin-right: 3px; }
@@ -1245,8 +1249,10 @@
     </div>
   </div>
   <div class="cp-cta-bar">
-    <div class="cp-cta-price" id="cp-cta-price"></div>
-    <button class="cp-wa-btn" id="cp-wa-btn" onclick="location.href=this.dataset.href">💬 Enquire on WhatsApp</button>
+    <div class="cp-cta-bar-inner">
+      <div class="cp-cta-price" id="cp-cta-price"></div>
+      <button class="cp-wa-btn" id="cp-wa-btn" onclick="location.href=this.dataset.href">💬 Enquire on WhatsApp</button>
+    </div>
   </div>
 </div>
 
