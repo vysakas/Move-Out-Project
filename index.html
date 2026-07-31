@@ -567,9 +567,9 @@
     position: relative;
   }
   @media (min-width: 600px) {
-    .car-card .card-image-wrap { height: 320px; }
-    .car-card .card-image { height: 320px; object-fit: cover; }
-    .car-card .card-image-placeholder { height: 320px; }
+    .car-card .card-image-wrap { max-height: 240px; overflow: hidden; }
+    .car-card .card-image { width: 100%; height: 240px; object-fit: cover; }
+    .car-card .card-image-placeholder { height: 240px; }
   }
   .card-original-price {
     font-size: 11px;
@@ -697,6 +697,199 @@
     font-weight: 500;
     color: var(--muted);
   }
+
+  /* CAR DETAIL PAGE */
+  .car-page {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--canvas);
+    z-index: 200;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    animation: cpFadeIn 0.3s ease;
+  }
+  @keyframes cpFadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .car-page.open { display: block; }
+  .car-page-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 0 120px;
+  }
+
+  /* Hero gallery */
+  .cp-gallery {
+    position: relative;
+    width: 100%;
+    background: #000;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+  .cp-gallery .carousel { height: 100%; width: 100%; border-radius: 0; }
+  .cp-gallery .carousel-track { height: 100%; }
+  .cp-gallery .carousel-track img { object-fit: cover; height: 100%; width: 100vw; max-width: 960px; }
+
+  /* Back button */
+  .cp-back {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    border: none;
+    border-radius: 99px;
+    padding: 8px 16px 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+  .cp-back:hover { background: rgba(0,0,0,0.75); }
+
+  /* Body */
+  .cp-body {
+    padding: 28px 24px 0;
+  }
+  .cp-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .cp-title {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.15;
+  }
+
+  /* Price bar */
+  .cp-price-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  .cp-price {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .cp-price sub { font-size: 15px; font-weight: 500; color: var(--muted); vertical-align: middle; margin-right: 4px; }
+  .cp-orig-price {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+  .cp-saving {
+    background: #dcfce7;
+    color: #16a34a;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 99px;
+  }
+
+  /* Specs grid */
+  .cp-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+  @media (min-width: 540px) { .cp-specs { grid-template-columns: repeat(4, 1fr); } }
+  .cp-spec {
+    background: var(--surface-soft);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .cp-spec-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .cp-spec-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* Description */
+  .cp-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 28px 0 12px;
+  }
+  .cp-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--body);
+  }
+  .cp-desc p { margin: 0 0 12px; }
+  .cp-desc p:last-child { margin-bottom: 0; }
+
+  /* Original listing link */
+  .cp-orig-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .cp-orig-link:hover { text-decoration: underline; }
+
+  /* Sticky CTA */
+  .cp-cta-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--canvas);
+    border-top: 1px solid var(--hairline);
+    padding: 14px 24px calc(14px + env(safe-area-inset-bottom));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 201;
+  }
+  .cp-cta-price { font-size: 22px; font-weight: 800; color: var(--ink); }
+  .cp-cta-price sub { font-size: 12px; font-weight: 500; color: var(--muted); vertical-align: middle; margin-right: 3px; }
+  .cp-wa-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 99px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .cp-wa-btn:hover { background: #1ebe5d; }
 
   /* MODAL */
   .modal-backdrop {
@@ -1029,6 +1222,34 @@
 </div>
 
 <!-- MODAL -->
+<!-- CAR DETAIL PAGE -->
+<div class="car-page" id="car-page">
+  <div class="car-page-inner">
+    <div class="cp-gallery" id="cp-gallery">
+      <button class="cp-back" onclick="closeCarPage()">&#8592; Back</button>
+    </div>
+    <div class="cp-body">
+      <div class="cp-eyebrow">🚗 Car</div>
+      <div class="cp-title" id="cp-title"></div>
+      <div class="cp-price-bar">
+        <div class="cp-price" id="cp-price"></div>
+        <div class="cp-orig-price" id="cp-orig-price"></div>
+        <div class="cp-saving" id="cp-saving"></div>
+      </div>
+      <div class="cp-specs" id="cp-specs"></div>
+      <div class="cp-section-title">Description</div>
+      <div class="cp-desc" id="cp-desc"></div>
+      <a class="cp-orig-link" id="cp-orig-link" href="#" target="_blank" rel="noopener" style="display:none">
+        🔗 View original listing
+      </a>
+    </div>
+  </div>
+  <div class="cp-cta-bar">
+    <div class="cp-cta-price" id="cp-cta-price"></div>
+    <button class="cp-wa-btn" id="cp-wa-btn" onclick="location.href=this.dataset.href">💬 Enquire on WhatsApp</button>
+  </div>
+</div>
+
 <div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
   <div class="modal" id="modal">
     <button class="modal-close" onclick="closeModalBtn()">×</button>
@@ -1373,7 +1594,7 @@ const CATEGORY_EMOJI = {
       <div class="card-wrap${cat === 'car' ? ' car-card' : ''}">
       <div class="item-card ${sold ? 'sold-overlay' : ''}"
            style="animation-delay:${idx * 0.05}s"
-           onclick="${sold ? '' : `openModal(${item.id})`}">
+           onclick="${sold ? '' : cat === 'car' ? `openCarPage(${item.id})` : `openModal(${item.id})`}"">
         <div class="card-image-wrap">
           ${carousel || `<div class="card-image-placeholder">${emoji}</div>`}
           ${sold ? `<div class="sold-badge">Sold</div>` : ''}
@@ -1400,6 +1621,86 @@ const CATEGORY_EMOJI = {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderItems();
+  }
+
+  function openCarPage(id) {
+    const item = items.find(i => i.id === id);
+    if (!item) return;
+    const price    = parseFloat((item.Price || '').replace(/[^0-9.]/g, '')) || 0;
+    const origPrice = parseFloat((item['Orginal price'] || item['Original Price'] || '').replace(/[^0-9.]/g, '')) || 0;
+    const photos   = getPhotosForTitle(item.Title);
+    const remote   = resolvePhotoUrl(item.Photos);
+    const srcs     = (photos.length > 0 ? photos : (remote ? [remote] : [])).map(s => s.startsWith('http') ? s : encodePath(s));
+
+    // Gallery
+    const gallery = document.getElementById('cp-gallery');
+    const backBtn = gallery.querySelector('.cp-back');
+    if (srcs.length === 0) {
+      gallery.innerHTML = '';
+      gallery.appendChild(backBtn);
+    } else {
+      const dots = srcs.map((_, i) => `<div class="carousel-dot${i===0?' active':''}" style="width:8px;height:8px"></div>`).join('');
+      const imgs = srcs.map(s => `<img src="${s}" alt="${item.Title}" style="object-fit:cover;width:100%;height:100%">`).join('');
+      gallery.innerHTML = `
+        <div class="carousel" id="car-cp" style="height:100%;border-radius:0">
+          <div class="carousel-track">${imgs}</div>
+          <button class="carousel-btn prev" onclick="slideCarousel('car-cp',-1,event)">&#8249;</button>
+          <button class="carousel-btn next" onclick="slideCarousel('car-cp', 1,event)">&#8250;</button>
+          <div class="carousel-dots">${dots}</div>
+        </div>`;
+      gallery.insertAdjacentHTML('afterbegin', '<button class="cp-back" onclick="closeCarPage()">&#8592; Back</button>');
+      initCarouselTouch(document.getElementById('car-cp'));
+    }
+
+    document.getElementById('cp-title').textContent = toDisplayTitle(item.Title);
+    document.getElementById('cp-price').innerHTML   = price ? `<sub>AED</sub>${price.toLocaleString()}` : '—';
+    document.getElementById('cp-cta-price').innerHTML = price ? `<sub>AED</sub>${price.toLocaleString()}` : '';
+
+    const origEl = document.getElementById('cp-orig-price');
+    const saveEl = document.getElementById('cp-saving');
+    if (origPrice) {
+      origEl.textContent = `AED ${origPrice.toLocaleString()}`;
+      origEl.style.display = '';
+      const saving = Math.round(((origPrice - price) / origPrice) * 100);
+      saveEl.textContent = `${saving}% off`;
+      saveEl.style.display = '';
+    } else {
+      origEl.style.display = 'none';
+      saveEl.style.display = 'none';
+    }
+
+    // Specs
+    const specs = [
+      { label: 'Condition', value: item.Condition || '—' },
+      { label: 'Age',       value: item.Age || '—' },
+      { label: 'Original Price', value: origPrice ? `AED ${origPrice.toLocaleString()}` : '—' },
+      { label: 'Available', value: item['Available from'] || 'Immediate' },
+    ];
+    document.getElementById('cp-specs').innerHTML = specs.map(s =>
+      `<div class="cp-spec"><div class="cp-spec-label">${s.label}</div><div class="cp-spec-value">${s.value}</div></div>`
+    ).join('');
+
+    document.getElementById('cp-desc').innerHTML = (item.Description || '').split(/\n+/).map(p => p.trim()).filter(Boolean).map(p => `<p>${p}</p>`).join('');
+
+    const origLink = (item['Original Link'] || '').trim();
+    const linkEl = document.getElementById('cp-orig-link');
+    if (origLink) { linkEl.href = origLink; linkEl.style.display = 'inline-flex'; }
+    else { linkEl.style.display = 'none'; }
+
+    const itemUrl = `${SITE_URL}/#item-${item.id}`;
+    const msg = encodeURIComponent(`Hi! I saw your moving sale and I'm interested in the "${toDisplayTitle(item.Title)}"${price ? ` (AED ${price.toLocaleString()})` : ''}. Is it still available?\n\n${itemUrl}`);
+    document.getElementById('cp-wa-btn').dataset.href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+
+    window.location.hash = `item-${item.id}`;
+    document.getElementById('car-page').classList.add('open');
+    document.getElementById('car-page').scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCarPage() {
+    document.getElementById('car-page').classList.remove('open');
+    document.body.style.overflow = '';
+    history.replaceState(null, '', location.pathname);
   }
 
   function openModal(id) {
