@@ -1689,11 +1689,21 @@ const CATEGORY_EMOJI = {
     renderItems();
   }
 
+  function trackProductView(item) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'page_view', {
+      page_title: item.Title,
+      page_location: window.location.origin + window.location.pathname + '#item-' + item.id,
+      page_path: '/item/' + item.id + '/' + item.Title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+    });
+  }
+
   function openCarPage(id) {
     pauseAllCardVideos(null);
     if (window.innerWidth < 768) { openModal(id); return; }
     const item = items.find(i => i.id === id);
     if (!item) return;
+    trackProductView(item);
     const price    = parseFloat((item.Price || '').replace(/[^0-9.]/g, '')) || 0;
     const origPrice = parseFloat((item['Orginal price'] || item['Original Price'] || '').replace(/[^0-9.]/g, '')) || 0;
     const allFiles  = getPhotosForTitle(item.Title);
@@ -1781,6 +1791,7 @@ const CATEGORY_EMOJI = {
     pauseAllCardVideos(null);
     const item = items.find(i => i.id === id);
     if (!item) return;
+    trackProductView(item);
     const cat   = (item.Category || '').toLowerCase();
     const emoji = CATEGORY_EMOJI[cat] || '📦';
     const price = parseFloat((item.Price || '').replace(/[^0-9.]/g, '')) || 0;
