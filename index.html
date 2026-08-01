@@ -1526,10 +1526,13 @@ const CATEGORY_EMOJI = {
     }
     if (cur || row.length) { row.push(cur.trim()); rows.push(row); }
 
-    const headers = rows[0];
-    return rows.slice(1).map((cols, idx) => {
+    // Find the first row that looks like the header (has 'Title' in it)
+    const headerIdx = rows.findIndex(r => r.some(c => c.trim() === 'Title'));
+    if (headerIdx === -1) return [];
+    const headers = rows[headerIdx];
+    return rows.slice(headerIdx + 1).map((cols, idx) => {
       const obj = {};
-      headers.forEach((h, i) => { obj[h] = cols[i] || ''; });
+      headers.forEach((h, i) => { obj[h.trim()] = (cols[i] || '').trim(); });
       return { ...obj, id: idx };
     }).filter(r => r.Title && r.Category);
   }
