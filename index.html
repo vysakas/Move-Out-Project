@@ -434,6 +434,14 @@
     transition: background 0.2s;
   }
   .carousel-dot.active { background: #fff; }
+  .carousel-dot.video-dot {
+    width: auto; height: auto; border-radius: 0;
+    background: transparent;
+    font-size: 9px; line-height: 1;
+    color: rgba(255,255,255,0.6);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .carousel-dot.video-dot.active { color: #fff; background: transparent; }
 
   .card-body {
     padding: 16px 20px 20px;
@@ -571,6 +579,7 @@
     .car-card .card-image { width: 100%; height: 240px; object-fit: cover; }
     .car-card .card-image-placeholder { height: 240px; }
     .car-card .carousel { height: 240px; aspect-ratio: unset; }
+  }
   .card-video-wrap { position: relative; flex-shrink: 0; width: 100%; height: 100%; cursor: pointer; }
   .card-video-play {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
@@ -579,7 +588,6 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 18px; pointer-events: none;
     transition: opacity 0.2s;
-  }
   }
   .card-original-price {
     font-size: 11px;
@@ -1421,7 +1429,10 @@ const CATEGORY_EMOJI = {
                    onerror="this.style.display='none'">`;
     }
 
-    const dots = slides.map((_, i) => `<div class="carousel-dot${i === 0 ? ' active' : ''}"></div>`).join('');
+    const dots = slides.map((_, i) => {
+      const isVidDot = videoSrc && i === 0;
+      return `<div class="carousel-dot${i === 0 ? ' active' : ''}${isVidDot ? ' video-dot' : ''}">${isVidDot ? '&#9654;' : ''}</div>`;
+    }).join('');
     return `
       <div class="carousel" id="car-${id}">
         <div class="carousel-track">${slides.join('')}</div>
@@ -1698,7 +1709,10 @@ const CATEGORY_EMOJI = {
         </div>`] : []),
       ...imageSrcs.map(s => `<img src="${s}" alt="${item.Title}" style="object-fit:cover;width:100%;height:100%;flex-shrink:0;">`)
     ];
-    const dots = allSlides.map((_, i) => `<div class="carousel-dot${i===0?' active':''}"></div>`).join('');
+    const dots = allSlides.map((_, i) => {
+      const isVidDot = videoSrc && i === 0;
+      return `<div class="carousel-dot${i===0?' active':''}${isVidDot?' video-dot':''}">${isVidDot?'&#9654;':''}</div>`;
+    }).join('');
     gallery.innerHTML = `
       <div class="carousel" id="car-cp" style="border-radius:0">
         <div class="carousel-track">${allSlides.join('')}</div>
@@ -1798,7 +1812,10 @@ const CATEGORY_EMOJI = {
         style="width:100%;height:100%;object-fit:contain;border-radius:3px;">`;
     } else {
       mImg.style.fontSize = '0';
-      const dots = modalSlides.map((_, i) => `<div class="carousel-dot${i===0?' active':''}" style="width:8px;height:8px"></div>`).join('');
+      const dots = modalSlides.map((_, i) => {
+        const isVidDot = modalVideoSrc && i === 0;
+        return `<div class="carousel-dot${i===0?' active':''}${isVidDot?' video-dot':''}" style="width:8px;height:8px">${isVidDot?'&#9654;':''}</div>`;
+      }).join('');
       mImg.innerHTML = `
         <div class="carousel" id="car-modal" style="border-radius:3px;height:100%">
           <div class="carousel-track">${modalSlides.join('')}</div>
