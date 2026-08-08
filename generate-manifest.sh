@@ -119,7 +119,7 @@ for t in sorted(added):
         print(f"   📁 Created: photos/{fname}/")
     new_titles_map[t] = fname
 
-# ── 4. HEIC → JPEG & collect photos ──────────────────────────────────────────
+# ── 4. HEIC/AVIF → JPEG & collect photos ─────────────────────────────────────
 
 exts = ('.jpg', '.jpeg', '.png', '.webp', '.JPG', '.JPEG', '.PNG', '.mp4', '.MP4', '.mov', '.MOV')
 manifest_photos = {}
@@ -129,7 +129,7 @@ for item_folder in sorted(os.listdir(PHOTOS_DIR)):
     if not os.path.isdir(folder_path):
         continue
     for f in os.listdir(folder_path):
-        if f.lower().endswith('.heic'):
+        if f.lower().endswith(('.heic', '.avif')):
             src = os.path.join(folder_path, f)
             dst = os.path.join(folder_path, os.path.splitext(f)[0] + '.jpg')
             if not os.path.exists(dst):
